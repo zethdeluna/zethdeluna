@@ -1,9 +1,8 @@
-import HomeHero from "../components/pages/home/hero";
-
+import HomeHero from "../components/pages/home/Hero";
 
 const Home = () => {
 	return (
-		<section className="home">
+		<section className="home-page">
 
 			<HomeHero />
 
