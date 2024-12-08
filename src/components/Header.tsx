@@ -9,6 +9,10 @@ const Header = () => {
 		setNavActive(!navActive);
 	};
 
+	const handleClick = ( event: React.MouseEvent<HTMLAnchorElement> ) => {
+		setNavActive(false);
+	};
+
 	return (
 		<header>
 			<div className="container flex-container">
@@ -22,28 +26,28 @@ const Header = () => {
 				<nav role="navigation" className={navActive ? 'active' : ''}>
 					<ul className="container grid menu">
 						<li>
-							<Link to="/about" className="heading-1">
+							<Link to="/about" className="heading-1" onClick={handleClick}>
 								<SVG name="plumeria-smiley-mpls" />
 								<span>About</span>
 								<SVG name="plumeria-smiley-heat" />
 							</Link>
 						</li>
 						<li>
-							<Link to="/work" className="heading-1">
+							<Link to="/work" className="heading-1" onClick={handleClick}>
 								<SVG name="plumeria-smiley-laker" />
 								<span>Work</span>
 								<SVG name="plumeria-smiley-dodger" />
 							</Link>
 						</li>
 						<li>
-							<Link to="/contact" className="heading-1">
+							<Link to="/contact" className="heading-1" onClick={handleClick}>
 								<SVG name="plumeria-smiley-heat" />
 								<span>Contact</span>
 								<SVG name="plumeria-smiley-dodger" />
 							</Link>
 						</li>
 						<li>
-							<Link to="/" className="heading-1">
+							<Link to="/" className="heading-1" onClick={handleClick}>
 								<SVG name="plumeria-smiley-heat" />
 								<span>Home</span>
 								<SVG name="plumeria-smiley-laker" />

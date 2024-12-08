@@ -1,4 +1,4 @@
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { LunaScroll } from '../../LunaScroll';
 import WorkList from './WorkList';
 import SVG from '../../SVG';
@@ -19,6 +19,11 @@ const Work = () => {
 				</h2>
 
 				<WorkList />
+
+				<Link to="/work" className="btn arrow-btn heading-2">
+					See all projects
+					<SVG name="arrow-right" />
+				</Link>
 
 			</div>
 		</section>

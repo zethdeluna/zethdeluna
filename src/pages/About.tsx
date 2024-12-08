@@ -1,7 +1,13 @@
+import Hero from '../components/pages/about/Hero';
+import Intro from '../components/pages/about/Intro';
+
 const About = () => {
 	return (
 		<section className="about-page">
-			<h2>Test</h2>
+
+			<Hero />
+			<Intro />
+
 		</section>
 	);
 };

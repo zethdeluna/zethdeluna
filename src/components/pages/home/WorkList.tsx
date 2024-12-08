@@ -2,7 +2,7 @@ import WorkCard from "./WorkCard";
 
 const WorkList = () => {
 	return (
-		<ul className="grid">
+		<ul className="grid" data-count="odd">
 			<WorkCard
 				svg=""
 				title="Project 1"

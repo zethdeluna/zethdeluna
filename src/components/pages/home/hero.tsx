@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import SVG from '../../SVG';
 
-const HomeHero = () => {
+const Hero = () => {
 	const containerRef = useRef<HTMLElement | null>(null);
 
 	useEffect(() => {
@@ -53,4 +53,4 @@ const HomeHero = () => {
 	);
 };
 
-export default HomeHero;
+export default Hero;

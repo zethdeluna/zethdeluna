@@ -10,6 +10,7 @@ import Star from '../assets/svgs/star-smiley.svg?react';
 import  ArrowLargeDown from '../assets/svgs/arrow-large-down.svg?react';
 import ArrowRight from '../assets/svgs/arrow-right.svg?react';
 import Exclamation from '../assets/svgs/exclamation.svg?react';
+import SevenLeaves from '../assets/svgs/seven-leaves.svg?react';
 
 interface SVGProps {
 	name?: string
@@ -43,6 +44,8 @@ const SVG: React.FC<SVGProps> = ({ name }) => {
 				return <ArrowRight />
 			case 'exclamation':
 				return <Exclamation />
+			case 'seven-leaves':
+				return <SevenLeaves />
 			default:
 				return;
 		}

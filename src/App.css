@@ -900,7 +900,6 @@ footer .copyright {
     left: 0;
     position: absolute;
     width: 100%;
-    /* z-index: -1; */
 }
 
 .work-module .card .metadata .eyebrow {
@@ -920,7 +919,6 @@ footer .copyright {
     position: absolute;
     transition: all 0.25s var(--bounce);
     width: calc(100% + 4px);
-    /* z-index: -1; */
 }
 
 .work-module .card:hover .hover-text {
@@ -958,10 +956,176 @@ footer .copyright {
 	fill: var(--black-mamba);
 }
 
-.work-module .arrow-btn {
-    bottom: -60px;
-    left: var(--container-outer-padding);
+.work-module ul + .arrow-btn {
     position: absolute;
+}
+
+.work-module ul[data-count="even"] + .arrow-btn {
+	bottom: -60px;
+    left: var(--container-outer-padding);
+}
+
+.work-module ul[data-count="odd"] + .arrow-btn {
+	bottom: 132px;
+	right: 0;
+	width: calc((100% - (11 * var(--gap))) / 12 * 5 + (5 * var(--gap)));
+}
+
+/********************************************************************************************************************************************************************************************************/
+
+/*ABOUT STYLES*/
+
+/********************************************************************************************************************************************************************************************************/
+
+/*** Hero ***/
+
+.about-hero {
+    padding: 120px 0 160px;
+}
+
+.about-hero h1 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: max-content;
+    width: auto;
+}
+
+.about-hero h1 span {
+    position: relative;
+}
+
+.about-hero h1 span > span {
+	z-index: 1;
+}
+
+.about-hero h1 span.heading-3 {
+    margin: 0 0 -8px;
+}
+
+.about-hero h1 [data-luna-scroll] {
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.about-hero h1 svg {
+    position: absolute;
+}
+
+.about-hero h1 .plumeria {
+    height: auto;
+    width: 60px;
+}
+
+.about-hero h1 span.heading-3 .plumeria {
+    left: -48px;
+    top: -16px;
+    transform: rotate(-8deg) scale(0);
+}
+
+.about-hero h1 span.heading-3 .animate .plumeria {
+    transform: rotate(-8deg) scale(1);
+}
+
+.about-hero h1 span.mega .seven-leaves {
+    bottom: -16px;
+    height: auto;
+    right: -48px;
+    width: 182px;
+}
+
+.about-hero h1 span.mega [data-luna-scroll] {
+	z-index: 2;
+}
+
+.about-hero h1 span.mega .plumeria {
+    bottom: 12px;
+    right: -32px;
+    transform: rotate(8deg) scale(0);
+}
+
+.about-hero h1 span.mega .animate .plumeria {
+    transform: rotate(8deg) scale(1);
+}
+
+/*** Intro ***/
+
+.about-intro {
+    margin: 0 0 160px;
+}
+
+.about-intro article {
+    grid-column: 2 / span 5;
+}
+
+.about-intro h2 {
+    margin: 0 0 16px;
+}
+
+.about-intro .about-me {
+    margin: 0 0 48px;
+}
+
+.about-intro .skills-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.about-intro .skills-container .skills-list {
+    max-width: calc(289 / 510 * 100%);
+}
+
+.about-intro .skills-container .eyebrow {
+    display: block;
+    margin: 0 0 8px;
+}
+
+.about-intro .skills-list ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 12px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.about-intro .skills-list li {
+	position: relative;
+	padding: 0 0 0 20px;
+}
+
+.about-intro .skills-list li:before {
+	aspect-ratio: 62 / 59;
+	background: url(./assets/svgs/star-smiley.svg) no-repeat;
+	background-size: 100%;
+	content: '';
+	height: auto;
+	left: 0;
+	position: absolute;
+	top: 8px;
+	width: 10px;
+}
+
+.about-intro .image-container {
+    aspect-ratio: 1 / 1;
+    border: 2px solid var(--black-mamba);
+    border-radius: 8px;
+    display: flex;
+    grid-column: 8 / span 4;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.about-intro .image-container img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
 }
 
 /********************************************************************************************************************************************************************************************************/
