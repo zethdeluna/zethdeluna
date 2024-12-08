@@ -414,6 +414,12 @@ footer .menu a {
     width: max-content;
 }
 
+header .menu a > span,
+footer .menu a > span {
+	position: relative;
+	z-index: 1;
+}
+
 header .menu a,
 header .menu a:hover,
 footer .menu a,
@@ -435,7 +441,6 @@ footer .menu a .plumeria:first-of-type {
     left: -32px;
     top: -24px;
     transform: rotate(-8deg) scale(0);
-    z-index: -1;
 }
 
 header .menu a .plumeria:last-of-type,
@@ -443,6 +448,7 @@ footer .menu a .plumeria:last-of-type {
     bottom: -8px;
     right: -56px;
     transform: rotate(8deg) scale(0);
+	z-index: 1;
 }
 
 header .menu a:hover .plumeria:first-of-type,
@@ -460,6 +466,98 @@ footer .menu a:hover .plumeria:last-of-type {
 /* FOOTER STYLES */
 
 /********************************************************************************************************************************************************************************************************/
+
+footer {
+    margin: 160px 0 0;
+}
+
+footer .outro {
+    align-items: flex-end;
+}
+
+footer .outro span {
+    position: relative;
+}
+
+footer .outro > h2 {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 24px;
+    grid-column: 2 / span 6;
+	position: relative;
+}
+
+footer .outro > span {
+	display: inline;
+    grid-column: 9 / span 3;
+	position: relative;
+}
+
+footer .outro .plumeria-container {
+    display: inline-block;
+}
+
+footer .outro .plumeria-container > span {
+	z-index: 1;
+}
+
+footer .outro h2 [data-luna-scroll] {
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+footer .outro > h2 .plumeria {
+    height: auto;
+    position: absolute;
+    transform-origin: center;
+    width: 100px;
+    z-index: -1;
+}
+
+footer .outro > h2 .plumeria.laker {
+    bottom: -16px;
+    left: -72px;
+    transform: rotate(-8deg) scale(0);
+}
+
+footer .outro > h2 .animate .plumeria.laker {
+    transform: rotate(-8deg) scale(1);
+}
+
+footer .outro > h2 .plumeria.heat {
+    right: -60px;
+    top: -8px;
+    transform: rotate(8deg) scale(0);
+    transition-delay: 0.8s;
+}
+
+footer .outro > h2 .animate .plumeria.heat {
+    transform: rotate(8deg) scale(1);
+}
+
+/*** Menu ***/
+
+footer .menu {
+	padding: 200px 0;
+}
+
+footer .menu li {
+	position: relative;
+	text-align: center;
+}
+
+/*** Sub-Footer ***/
+
+footer .copyright {
+    border-top: 2px solid var(--black-mamba);
+    margin: 0;
+    opacity: 0.4;
+    padding: 24px 0;
+    text-align: center;
+}
 
 /********************************************************************************************************************************************************************************************************/
 

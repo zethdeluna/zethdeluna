@@ -1,7 +1,5 @@
 import { LunaScroll } from '../../LunaScroll';
-import Sun from '../../../assets/svgs/sun-smiley.svg?react';
-import Star from '../../../assets/svgs/star-smiley.svg?react';
-import ArrowRight from '../../../assets/svgs/arrow-right.svg?react';
+import SVG from '../../SVG';
 
 interface WorkCardProps {
 	svg?: string;
@@ -15,8 +13,8 @@ const WorkCard: React.FC<WorkCardProps> = ({ svg, title, link, category }) => {
 	return (
 		<li>
 			<LunaScroll animation="bounce-in">
-				{svg === 'sun' && <Sun />}
-				{svg === 'star' && <Star />}
+				{svg === 'sun' && <SVG name="sun" />}
+				{svg === 'star' && <SVG name="star" />}
 			</LunaScroll>
 			<a className="card" href={link ? link : '#'}>
 				<div className="image-container"></div>
@@ -26,7 +24,7 @@ const WorkCard: React.FC<WorkCardProps> = ({ svg, title, link, category }) => {
 				</div>
 				<div className="hover-text heading-5">
 					Take a look
-					<ArrowRight />
+					<SVG name="arrow-right" />
 				</div>
 			</a>
 		</li>

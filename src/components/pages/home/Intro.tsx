@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import { LunaScroll } from '../../LunaScroll';
-import PlumeriaSmileyMPLS from '../../../assets/svgs/plumeria-smiley-mpls.svg?react';
-import Exclamation from '../../../assets/svgs/exclamation.svg?react';
-import ArrowRight from '../../../assets/svgs/arrow-right.svg?react';
+import SVG from '../../SVG';
 
 const Intro = () => {
 	return (
@@ -13,11 +11,11 @@ const Intro = () => {
 
 					<h2 className="mega">
 						<LunaScroll animation="bounce-in">
-							<PlumeriaSmileyMPLS />
+							<SVG name="plumeria-smiley-mpls" />
 						</LunaScroll>
 						<span>Hello</span>
 						<LunaScroll animation="bounce-in">
-							<Exclamation />
+							<SVG name="exclamation" />
 						</LunaScroll>
 					</h2>
 
@@ -26,7 +24,7 @@ const Intro = () => {
 				</article>
 
 				<Link to="/about" className="btn arrow-btn heading-2">
-					More about me <ArrowRight />
+					More about me <SVG name="arrow-right" />
 				</Link>
 
 			</div>

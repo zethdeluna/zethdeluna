@@ -1,8 +1,7 @@
 // import { Link } from 'react-router-dom';
 import { LunaScroll } from '../../LunaScroll';
 import WorkList from './WorkList';
-import PlumeriaSmileyLaker from '../../../assets/svgs/plumeria-smiley-laker.svg?react';
-import PlumeriaSmileyDodger from '../../../assets/svgs/plumeria-smiley-dodger.svg?react';
+import SVG from '../../SVG';
 
 const Work = () => {
 	return (
@@ -11,11 +10,11 @@ const Work = () => {
 
 				<h2 className="mega">
 					<LunaScroll animation="bounce-in">
-						<PlumeriaSmileyLaker />
+						<SVG name="plumeria-smiley-laker" />
 					</LunaScroll>
 					<span>Work</span>
 					<LunaScroll animation="bounce-in">
-						<PlumeriaSmileyDodger />
+						<SVG name="plumeria-smiley-dodger" />
 					</LunaScroll>
 				</h2>
 

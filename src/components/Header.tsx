@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import PlumeriaSmileyDodger from '../assets/svgs/plumeria-smiley-dodger.svg?react';
-import PlumeriaSmileyHeat from '../assets/svgs/plumeria-smiley-heat.svg?react';
-import PlumeriaSmileyLaker from '../assets/svgs/plumeria-smiley-laker.svg?react';
-import PlumeriaSmileyMPLS from '../assets/svgs/plumeria-smiley-mpls.svg?react';
+import SVG from './SVG';
 
-const Nav = () => {
+const Header = () => {
 	const [navActive, setNavActive] = useState<boolean>(false);
 
 	const handleMenu = () => {
@@ -26,30 +23,30 @@ const Nav = () => {
 					<ul className="container grid menu">
 						<li>
 							<Link to="/about" className="heading-1">
-								<PlumeriaSmileyMPLS />
+								<SVG name="plumeria-smiley-mpls" />
 								<span>About</span>
-								<PlumeriaSmileyHeat />
+								<SVG name="plumeria-smiley-heat" />
 							</Link>
 						</li>
 						<li>
 							<Link to="/work" className="heading-1">
-								<PlumeriaSmileyLaker />
+								<SVG name="plumeria-smiley-laker" />
 								<span>Work</span>
-								<PlumeriaSmileyDodger />
+								<SVG name="plumeria-smiley-dodger" />
 							</Link>
 						</li>
 						<li>
 							<Link to="/contact" className="heading-1">
-								<PlumeriaSmileyHeat />
+								<SVG name="plumeria-smiley-heat" />
 								<span>Contact</span>
-								<PlumeriaSmileyDodger />
+								<SVG name="plumeria-smiley-dodger" />
 							</Link>
 						</li>
 						<li>
 							<Link to="/" className="heading-1">
-								<PlumeriaSmileyHeat />
+								<SVG name="plumeria-smiley-heat" />
 								<span>Home</span>
-								<PlumeriaSmileyLaker />
+								<SVG name="plumeria-smiley-laker" />
 							</Link>
 						</li>
 					</ul>
@@ -59,4 +56,4 @@ const Nav = () => {
 	);
 };
 
-export default Nav;
+export default Header;

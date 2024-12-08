@@ -1,8 +1,5 @@
 import { useEffect, useRef } from 'react';
-import Zeth from "../../../assets/svgs/zeth.svg?react";
-import DeLuna from "../../../assets/svgs/de-luna.svg?react";
-import Moon from '../../../assets/svgs/moon-and-stars.svg?react';
-import  ArrowLargeDown from '../../../assets/svgs/arrow-large-down.svg?react';
+import SVG from '../../SVG';
 
 const HomeHero = () => {
 	const containerRef = useRef<HTMLElement | null>(null);
@@ -45,10 +42,10 @@ const HomeHero = () => {
 				<article>
 					<h1 className="accessibility">Home</h1>
 
-					<Zeth />
-					<DeLuna />
-					<Moon />
-					<ArrowLargeDown />
+					<SVG name="zeth" />
+					<SVG name="deluna" />
+					<SVG name="moon" />
+					<SVG name="arrow-large-down" />
 				</article>
 
 			</div>
