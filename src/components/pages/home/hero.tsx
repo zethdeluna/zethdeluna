@@ -1,15 +1,15 @@
 const HomeHero = () => {
-    return (
-        <section className="hero">
-            <div className="container">
+	return (
+		<section className="hero">
+			<div className="container">
 
-                <article>
-                    <h1>Zeth De Luna</h1>
-                </article>
+				<article>
+					<h1>Home Page</h1>
+				</article>
 
-            </div>
-        </section>
-    );
+			</div>
+		</section>
+	);
 };
 
 export default HomeHero;
