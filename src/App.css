@@ -254,23 +254,23 @@ ol.small,
 
 /********************************************************************************************************************************************************************************************************/
 
-/*HEADER STYLES*/
+/* HEADER STYLES */
 
 /********************************************************************************************************************************************************************************************************/
 
 /********************************************************************************************************************************************************************************************************/
 
-/*FOOTER STYLES*/
+/* FOOTER STYLES */
 
 /********************************************************************************************************************************************************************************************************/
 
 /********************************************************************************************************************************************************************************************************/
 
-/*HOME STYLES*/
+/* HOME STYLES */
 
 /********************************************************************************************************************************************************************************************************/
 
-/***Hero***/
+/*** Hero ***/
 
 .hero {
 	padding: 126px 0 240px;
@@ -358,7 +358,7 @@ ol.small,
 	width: calc(45 / 1440 * 100vw);
 }
 
-/*Star Animations*/
+/* Star Animations */
 
 .moon-and-stars .star {
 	transition: all 0.4s var(--bounce);
@@ -368,6 +368,275 @@ ol.small,
 	animation: starShake 0.25s var(--bounce);
 	transform-box: fill-box;
 	transform-origin: center;
+}
+
+/*** Intro ***/
+
+.intro .grid {
+    align-items: flex-end;
+}
+
+.intro article {
+    grid-column: 2 / span 5;
+}
+
+.intro article h2 {
+    color: var(--dodger);
+    display: flex;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.intro article h2 .exclamation {
+    bottom: 3px;
+    height: auto;
+    position: relative;
+    transform: rotate(20deg);
+    transform-origin: left bottom;
+    width: 16px;
+}
+
+.intro article h2 .exclamation > g {
+    transform: scale(0);
+    transform-origin: bottom;
+    transition: all 0.4s var(--bounce) 0.5s;
+}
+
+.intro article h2 .animate .exclamation > g {
+    transform: scale(1);
+}
+
+.intro article h2 .plumeria {
+    height: auto;
+    left: -48px;
+    position: absolute;
+    top: -24px;
+    transform: rotate(-16deg) scale(0);
+    transform-origin: center;
+    transition: all 0.4s var(--bounce) 0.5s;
+    width: 80px;
+    z-index: -1;
+}
+
+.intro article h2 span {
+	position: relative;
+}
+
+.intro article h2 .animate .plumeria {
+    transform: rotate(-16deg) scale(1);
+}
+
+.intro .btn.arrow-btn {
+    grid-column: 8 / span 4;
+}
+
+/*** Work ***/
+
+.work-module {
+    padding: 180px 0 130px;
+}
+
+.work-module h2 {
+    color: var(--heat);
+    margin: 0 auto 160px;
+    max-width: max-content;
+    position: relative;
+}
+
+.work-module h2 span {
+	position: relative;
+}
+
+.work-module h2 .plumeria {
+    height: auto;
+    position: absolute;
+    transform-origin: center;
+    width: 80px;
+}
+
+.work-module h2 [data-luna-scroll]:first-of-type .plumeria {
+    left: -48px;
+    top: -24px;
+    transform: rotate(-16deg) scale(0);
+    z-index: -1;
+}
+
+.work-module h2 [data-luna-scroll].animate:first-of-type .plumeria {
+    transform: rotate(-16deg) scale(1);
+}
+
+.work-module h2 [data-luna-scroll]:last-of-type .plumeria {
+    bottom: -16px;
+    right: -48px;
+    transform: rotate(16deg) scale(0);
+    transition-delay: 0.8s;
+    z-index: 2;
+}
+
+.work-module h2 [data-luna-scroll].animate:last-of-type .plumeria {
+    transform: rotate(16deg) scale(1);
+}
+
+/* Project List */
+
+.work-module li {
+    position: relative;
+    width: calc(100% + var(--gap));
+}
+
+.work-module li:nth-of-type(odd) {
+    grid-column: 1 / span 5;
+}
+
+.work-module li:nth-of-type(even) {
+    grid-column: 8 / span 5;
+    left: calc(-1 * var(--gap));
+    transform: translateY(290px);
+}
+
+.work-module li:not(:last-of-type) {
+    margin-bottom: 160px;
+}
+
+.work-module li.project-2 .sun-smiley {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    left: -96px;
+    position: absolute;
+    top: -290px;
+    width: 400px;
+}
+
+.work-module li.project-2 .sun-smiley polygon {
+    animation: sunSpin 40s linear infinite;
+    transform-origin: center;
+}
+
+.work-module li.project-3 .star-smiley {
+    position: absolute;
+    right: -52px;
+    top: 19px;
+    transform: rotate(16deg) translateX(-56px);
+    transform-origin: center;
+}
+
+.work-module li.project-3.animate .star-smiley {
+    transform: rotate(-16deg) translateX(0);
+}
+
+.work-module li.project-4 .star-smiley {
+    left: -46px;
+    position: absolute;
+    top: -43px;
+    transform: rotate(-16deg) translate3d(50px, 60px, 0);
+    transform-origin: center;
+}
+
+.work-module li.project-4.animate .star-smiley {
+    transform: rotate(-16deg) translate3d(0, 0, 0);
+}
+
+.work-module .card {
+    aspect-ratio: 55 / 42;
+    border-radius: 10px;
+    color: var(--black-mamba);
+    display: flex;
+    height: auto;
+    position: relative;
+    width: 100%;
+}
+
+.work-module li.project-1 .card {
+    border: 2px solid var(--laker);
+}
+
+.work-module li.project-2 .card {
+    border: 2px solid var(--dodger);
+}
+
+.work-module li.project-3 .card {
+    border: 2px solid var(--black-mamba);
+}
+
+.work-module li.project-4 .card {
+    border: 2px solid var(--heat);
+}
+
+.work-module .card:hover {
+    color: inherit;
+}
+
+.work-module .card img {
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+}
+
+.work-module .card .metadata {
+    align-items: flex-end;
+    bottom: -48px;
+    display: flex;
+    justify-content: space-between;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+.work-module .card .metadata .eyebrow {
+    margin-bottom: 4px;
+}
+
+.work-module .hover-text {
+    align-items: flex-end;
+    border-radius: 0 0 10px 10px;
+    bottom: 0;
+    color: var(--cream);
+    display: flex;
+    height: 68px;
+    justify-content: center;
+    left: -2px;
+    padding: 0 0 9px;
+    position: absolute;
+    transition: all 0.25s var(--bounce);
+    width: calc(100% + 4px);
+    z-index: -1;
+}
+
+.work-module .card:hover .hover-text {
+    transform: translateY(56px);
+}
+
+.work-module li.project-1 .hover-text {
+    background: var(--laker);
+}
+
+.work-module li.project-2 .hover-text {
+    background: var(--dodger);
+}
+
+.work-module li.project-3 .hover-text {
+    background: var(--black-mamba);
+}
+
+.work-module li.project-4 .hover-text {
+    background: var(--heat);
+}
+
+.work-module .hover-text .arrow-right {
+    height: auto;
+    margin: 0 -20px 11px 16px;
+    width: 40px;
+}
+
+.work-module .hover-text .arrow-right g > g {
+    fill: var(--cream);
+}
+
+.work-module .arrow-btn {
+    bottom: -60px;
+    left: var(--container-outer-padding);
+    position: absolute;
 }
 
 /********************************************************************************************************************************************************************************************************/
