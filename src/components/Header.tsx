@@ -9,7 +9,7 @@ const Header = () => {
 		setNavActive(!navActive);
 	};
 
-	const handleClick = ( event: React.MouseEvent<HTMLAnchorElement> ) => {
+	const handleClick = () => {
 		setNavActive(false);
 	};
 
