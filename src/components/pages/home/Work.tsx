@@ -1,5 +1,6 @@
 // import { Link } from 'react-router-dom';
 import { LunaScroll } from '../../LunaScroll';
+import WorkList from './WorkList';
 import PlumeriaSmileyLaker from '../../../assets/svgs/plumeria-smiley-laker.svg?react';
 import PlumeriaSmileyDodger from '../../../assets/svgs/plumeria-smiley-dodger.svg?react';
 
@@ -17,6 +18,8 @@ const Work = () => {
 						<PlumeriaSmileyDodger />
 					</LunaScroll>
 				</h2>
+
+				<WorkList />
 
 			</div>
 		</section>
