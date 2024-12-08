@@ -1,0 +1,11 @@
+<svg width="44px" height="14px" viewBox="0 0 44 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Menu Button</title>
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home" transform="translate(-1356.000000, -40.000000)" fill="#242424">
+            <g id="Menu-Button" transform="translate(1356.000000, 40.000000)">
+                <rect id="Rectangle" x="0" y="0" width="44" height="4" rx="1.5"></rect>
+                <rect id="Rectangle" x="0" y="10" width="44" height="4" rx="1.5"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
