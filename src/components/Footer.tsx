@@ -57,6 +57,10 @@ const Footer = () => {
 					</Link>
 				</li>
 			</ul>
+
+			<div className="container sub-footer">
+				<p className="copyright">&copy; {new Date().getFullYear()}</p>
+			</div>
 		</footer>
 	);
 };
