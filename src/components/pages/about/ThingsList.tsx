@@ -56,7 +56,7 @@ const ThingsList = () => {
 		<ul className="things">
 			{
 				things.map((thing) => (
-					<ThingItem title={thing.title} thing={thing.thing} image={thing.image} />
+					<ThingItem key={thing.title} title={thing.title} thing={thing.thing} image={thing.image} />
 				))
 			}
 		</ul>
