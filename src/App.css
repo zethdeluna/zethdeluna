@@ -464,13 +464,41 @@ footer .menu a:hover .plumeria:last-of-type {
 /*** Page Transition ***/
 
 .page-transition {
+	align-items: center;
 	background: var(--cream);
+	display: flex;
 	height: 100dvh;
+	justify-content: center;
 	left: 0;
 	position: fixed;
 	top: 0;
+	transition: opacity 0.5s ease;
 	width: 100vw;
 	z-index: 9;
+}
+
+.page-transition:before {
+	animation: loading 1s ease;
+	background: url(./assets/svgs/star-smiley.svg) no-repeat;
+	background-size: 100%;
+	content: '';
+	display: block;
+	height: 59px;
+	position: relative;
+	width: 62px;
+	z-index: 1;
+}
+
+.page-transition:not(.active) {
+	opacity: 0;
+}
+
+@keyframes loading {
+	0% { transform: rotate(0deg); }
+	25% { transform: rotate(-30deg); }
+	50% { transform: rotate(30deg); }
+	75% { transform: rotate(-30deg); }
+	100% { transform: rotate(0deg); }
 }
 
 /********************************************************************************************************************************************************************************************************/

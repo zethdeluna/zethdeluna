@@ -26,7 +26,7 @@ const router = createBrowserRouter([
 				element: <Home />,
 				loader: async () => {
 					// Simulate a brief delay
-					await new Promise(resolve => setTimeout(resolve, 1000));
+					await new Promise(resolve => setTimeout(resolve, 1250));
 					return null;
 				}
 			},
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
 				element: <About />,
 				loader: async () => {
 					// Simulate a brief delay
-					await new Promise(resolve => setTimeout(resolve, 1000));
+					await new Promise(resolve => setTimeout(resolve, 1250));
 					return null;
 				}
 			},
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
 				element: <Contact />,
 				loader: async () => {
 					// Simulate a brief delay
-					await new Promise(resolve => setTimeout(resolve, 1000));
+					await new Promise(resolve => setTimeout(resolve, 1250));
 					return null;
 				}
 			}
