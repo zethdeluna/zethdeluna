@@ -1,5 +1,6 @@
 import Hero from '../components/pages/about/Hero';
 import Intro from '../components/pages/about/Intro';
+import FavoriteThings from '../components/pages/about/FavoriteThings';
 
 const About = () => {
 	return (
@@ -7,6 +8,7 @@ const About = () => {
 
 			<Hero />
 			<Intro />
+			<FavoriteThings />
 
 		</section>
 	);
