@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { SelectOption } from "./ExpenseFormPopup";
 
 interface CustomSelectProps {
