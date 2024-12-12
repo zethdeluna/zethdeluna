@@ -9,9 +9,9 @@ export default defineConfig({
 	svgr()
 ],
   base: './',
-  css: {
-	modules: {
-		generateScopedName: '[local]'
-	}
-  }
+//   css: {
+// 	modules: {
+// 		generateScopedName: '[local]'
+// 	}
+//   }
 })

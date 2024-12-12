@@ -240,7 +240,7 @@ const Calendar = () => {
 	}, []);
 
 	return (
-		<section className="project-container">
+		<section className={`project-container ${styles['expense-calendar']}`}>
 			
 			<div className={styles['calendar-hero']}>
 				<div className={styles['container']}>
