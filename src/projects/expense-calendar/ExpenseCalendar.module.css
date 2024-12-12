@@ -145,7 +145,7 @@ h5,
 .heading-5,
 h6,
 .heading-6 {
-    /* font-variation-settings: 'wght' 600; */
+	font-family: var(--body-font);
     font-weight: 600;
     margin: 0;
 }
@@ -190,6 +190,10 @@ h6,
     font-size: calc(24rem / 16);
     letter-spacing: -0.4px;
     line-height: calc(32 / 24);
+}
+
+.title {
+	text-transform: uppercase;
 }
 
 p,
@@ -280,22 +284,16 @@ input::placeholder {
 
 /********************************************************************************************************************************************************************************************************/
 
-/*HEADER STYLES*/
+/*HERO STYLES*/
 
 /********************************************************************************************************************************************************************************************************/
 
-header {
-    padding: var(--text-spacing-medium) 0;
+.calendar-hero {
+	padding: var(--module-spacing-small) 0;
 }
 
-header .container {
-    display: flex;
-    justify-content: center;
-}
-
-header .title {
-    text-align: center;
-    text-transform: uppercase;
+.calendar-hero .title {
+	text-align: center;
 }
 
 /********************************************************************************************************************************************************************************************************/
@@ -518,6 +516,10 @@ header .title {
 
 .calendar-day .expense-item .description h5[data-account-type="income"] {
     color: var(--cypress);
+}
+
+.calendar-day .expense-item .description p {
+	margin: 12px 0 var(--text-spacing-xsmall);
 }
 
 .calendar-day .expense-item .description .btn.delete {

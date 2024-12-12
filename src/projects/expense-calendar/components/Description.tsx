@@ -1,3 +1,5 @@
+import styles from '../ExpenseCalendar.module.css';
+import clsx from 'clsx';
 import { Expense, PopupPosition } from "./Calendar";
 
 interface OpenDescription {
@@ -28,11 +30,19 @@ const Description: React.FC<DescriptionProps> = ({
 }) => {
 	return (
 		<div
-			id={`description-${dayID}`}
-			className={`popup description ${openDescription &&
+			id={`${styles['description']}-${dayID}`}
+			// className={`popup description ${openDescription &&
+			// 	openDescription.dayID === dayID &&
+			// 	openDescription.expenseIndex === index ? 'active' : ''
+			// }`}
+			className={clsx(
+				styles['popup'],
+				styles['description'],
+				openDescription &&
 				openDescription.dayID === dayID &&
-				openDescription.expenseIndex === index ? 'active' : ''
-			}`}
+				openDescription.expenseIndex === index && styles['active']
+
+			)}
 			style={position ? {
 				left: position.left_position,
 				top: position.top_position
@@ -40,7 +50,10 @@ const Description: React.FC<DescriptionProps> = ({
 		>
 			<button
 				type="button"
-				className="btn close"
+				className={clsx(
+					styles['btn'],
+					styles['close']
+				)}
 				aria-label="Close description"
 				tabIndex={0}
 				onClick={() => toggleDescription(dayID, index)}
@@ -48,19 +61,22 @@ const Description: React.FC<DescriptionProps> = ({
 					if ( el ) buttonRefsMap.current?.set(`${dayID}-${index}`, el);
 				}}
 			>
-				<span className="accessibility">Close description</span>
-				<span className="icon"></span>
+				<span className={styles['accessibility']}>Close description</span>
+				<span className={styles['icon']}></span>
 			</button>
 
-			<h4 className="eyebrow">{expense.day.monthString} {expense.day.number}</h4>
-			<h5 data-acount-type={expense.account_type}>
+			<h4 className={styles['eyebrow']}>{expense.day.monthString} {expense.day.number}</h4>
+			<h5 className={styles['heading-5']} data-account-type={expense.account_type}>
 				{expense.account_type === 'expense' ? '-' : '+'}${expense.amount}
 			</h5>
-			<p className="small">{expense.description}</p>
+			<p className={styles['small']}>{expense.description}</p>
 
 			<button
 				type="button"
-				className="btn delete"
+				className={clsx(
+					styles['btn'],
+					styles['delete']
+				)}
 				aria-label="Delete expense"
 				tabIndex={0}
 				onClick={() => {

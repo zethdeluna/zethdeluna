@@ -1,3 +1,5 @@
+import styles from '../ExpenseCalendar.module.css';
+import clsx from 'clsx';
 import { useState, useEffect } from "react";
 import CustomSelect from "./CustomSelect";
 import { Expense, ExpenseGroups, PopupPosition } from "./Calendar";
@@ -98,22 +100,32 @@ const ExpenseFormPopup: React.FC<ExpenseFormPopupProps> = ({
 
 	return (
 		<div
-			id={dayID}
-			className={`popup expense-form-popup ${isActive ? 'active' : ''}`}
+			id={styles[dayID]}
+			className={clsx(
+				styles['popup'],
+				styles['expense-form-popup'],
+				isActive && styles['active']
+			)}
 			data-group={dayID}
 			style={position ? {
 				left: position.left_position,
 				top: position.top_position
 			} : {}}
 		>
-			<h4 className="eyebrow">{day.monthString} {day.number}</h4>
-			<button className="btn close" onClick={closeActiveForms}>
-				<span className="accessibility">Close</span>
-				<span className="icon"></span>
+			<h4 className={styles['eyebrow']}>{day.monthString} {day.number}</h4>
+			<button
+				className={clsx(
+					styles['btn'],
+					styles['close']
+				)}
+				onClick={closeActiveForms}
+			>
+				<span className={styles['accessibility']}>Close</span>
+				<span className={styles['icon']}></span>
 			</button>
 
-			<form className="expense-form" onSubmit={handleSubmit}>
-				<div className="form-row">
+			<form className={styles['expense-form']} onSubmit={handleSubmit}>
+				<div className={styles['form-row']}>
 					<CustomSelect
 						label="Account Type"
 						name="account-type"
@@ -125,7 +137,7 @@ const ExpenseFormPopup: React.FC<ExpenseFormPopupProps> = ({
 					/>
 				</div>
 
-				<div className="form-row">
+				<div className={styles['form-row']}>
                     <CustomSelect
                         label="Frequency"
                         name="frequency"
@@ -137,10 +149,23 @@ const ExpenseFormPopup: React.FC<ExpenseFormPopupProps> = ({
                     />
                 </div>
 
-				<div className="form-row dollar-amount">
-                    <label htmlFor={inputNumID} className="eyebrow small">Amount</label>
+				<div
+					className={clsx(
+						styles['form-row'],
+						styles['dollar-amount']
+					)}
+				>
+                    <label
+						htmlFor={inputNumID}
+						className={clsx(
+							styles['eyebrow'],
+							styles['small']
+						)}
+					>
+						Amount
+					</label>
                     <input
-                        className="small"
+                        className={styles['small']}
                         type="number"
                         id={inputNumID}
                         value={inputNumValue}
@@ -149,10 +174,18 @@ const ExpenseFormPopup: React.FC<ExpenseFormPopupProps> = ({
                     />
                 </div>
 
-				<div className="form-row">
-                    <label htmlFor={inputDescID} className="eyebrow small">Description</label>
+				<div className={styles['form-row']}>
+                    <label
+						htmlFor={inputDescID}
+						className={clsx(
+							styles['eyebrow'],
+							styles['small']
+						)}
+					>
+						Description
+					</label>
                     <input 
-                        className="small"
+                        className={styles['small']}
                         type="text"
                         id={inputDescID}
                         placeholder="Description"
@@ -161,7 +194,15 @@ const ExpenseFormPopup: React.FC<ExpenseFormPopupProps> = ({
                     />
                 </div>
 
-				<button className="btn small submit">Add</button>
+				<button
+					className={clsx(
+						styles['btn'],
+						styles['small'],
+						styles['submit']
+					)}
+				>
+					Add
+				</button>
 			</form>
 		</div>
 	);

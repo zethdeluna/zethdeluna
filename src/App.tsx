@@ -5,6 +5,8 @@ import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Projects from './pages/Projects';
+import ExpenseCalendar from './projects/expense-calendar/ExpenseCalendar';
 import PageTransition from './components/PageTransition';
 
 const RootLayout = () => {
@@ -16,6 +18,14 @@ const RootLayout = () => {
 	);
 };
 
+const createLoader = (delay: number = 1250) => {
+	// simulate page load
+	return async() => {
+		await new Promise( resolve => setTimeout( resolve, delay ) );
+		return null;
+	}
+};
+
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -24,29 +34,29 @@ const router = createBrowserRouter([
 			{
 				index: true,
 				element: <Home />,
-				loader: async () => {
-					// Simulate a brief delay
-					await new Promise(resolve => setTimeout(resolve, 1250));
-					return null;
-				}
+				loader: createLoader()
 			},
 			{
 				path: 'about',
 				element: <About />,
-				loader: async () => {
-					// Simulate a brief delay
-					await new Promise(resolve => setTimeout(resolve, 1250));
-					return null;
-				}
+				loader: createLoader()
 			},
 			{
 				path: 'contact',
 				element: <Contact />,
-				loader: async () => {
-					// Simulate a brief delay
-					await new Promise(resolve => setTimeout(resolve, 1250));
-					return null;
-				}
+				loader: createLoader()
+			},
+			{
+				path: 'projects',
+				element: <Projects />,
+				loader: createLoader(),
+				children: [
+					{
+						path: 'expense-calendar',
+						element: <ExpenseCalendar />,
+						loader: createLoader()
+					}
+				]
 			}
 		]
 	}

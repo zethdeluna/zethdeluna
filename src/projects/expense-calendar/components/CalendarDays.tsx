@@ -1,3 +1,5 @@
+import styles from '../ExpenseCalendar.module.css';
+import clsx from 'clsx';
 import { useRef, useState, useCallback, useEffect } from "react";
 import { Expense, ExpenseGroups, PopupPosition } from './Calendar';
 import ExpenseFormPopup from "./ExpenseFormPopup";
@@ -162,7 +164,7 @@ const CalendarDays: React.FC<CalendarDayProps> = ({
 	}, [openDescription]);
 
 	return (
-		<div className="days" ref={daysRef}>
+		<div className={styles['days']} ref={daysRef}>
 			{
 				currentDays.map(day => {
 					day.monthString = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(day.date);
@@ -172,14 +174,18 @@ const CalendarDays: React.FC<CalendarDayProps> = ({
 					return (
 						<div
 							id={dayID}
-							className={`calendar-day${day.currentMonth ? ' current-month' : ''}${day.isToday ? ' today' : ''}`}
+							className={clsx(
+								styles['calendar-day'],
+								day.currentMonth && styles['current-month'],
+								day.isToday && styles['today']
+							)}
 							data-date={day.date.toString()}
 							key={dayID}
 						>
-							<span className="eyebrow">{day.number}</span>
+							<span className={styles['eyebrow']}>{day.number}</span>
 
 							<div
-								className="add-expense"
+								className={styles['add-expense']}
 								role="button"
 								onClick={() => acitveFormHandler(dayID)}
 								tabIndex={0}
@@ -198,9 +204,14 @@ const CalendarDays: React.FC<CalendarDayProps> = ({
 
 							{dayExpenses.length > 0 && (
 								dayExpenses.map((expense, index) => (
-									<div key={index} className="expense-item">
+									<div key={index} className={styles['expense-item']}>
 										<button
-											className={`btn amount eyebrow ${expense.account_type}`}
+											className={clsx(
+												styles['btn'],
+												styles['amount'],
+												styles['eyebrow'],
+												styles[expense.account_type]
+											)}
 											onClick={() => toggleDescription(dayID, index)}
 										>
 											{expense.account_type === 'expense' ? '-' : '+'}${expense.amount.toFixed(2)}

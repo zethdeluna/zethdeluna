@@ -1,3 +1,5 @@
+import styles from '../ExpenseCalendar.module.css';
+import clsx from 'clsx';
 import { useState, useCallback, useEffect } from "react";
 import CalendarDays from "./CalendarDays";
 import { CalendarDay } from "./CalendarDays";
@@ -238,61 +240,85 @@ const Calendar = () => {
 	}, []);
 
 	return (
-		<div className="calendar">
-			<div className="container">
-				<div className="calendar-header">
+		<section className="project-container">
+			
+			<div className={styles['calendar-hero']}>
+				<div className={styles['container']}>
 
-					<div className="adjacent-months-picker">
-						<button
-							className="btn prev"
-							onClick={() => adjacentMonthHandler('previous')}
-							tabIndex={0}
-							aria-label="Previous Month"
-						>
-							<span className="accessibility">Previous Month</span>
-						</button>
-						<button
-							className="btn next"
-							onClick={() => adjacentMonthHandler('next')}
-							tabIndex={0}
-							aria-label="Previous Month"
-						>
-							<span className="accessibility">Next Month</span>
-						</button>
-					</div>
+					<h1
+						className={clsx(
+							styles['title'],
+							styles['heading-4']
+						)}
+					>
+						Expense Calendar
+					</h1>
 
-					<div className="calendar-title">
-						<span className="eyebrow">{date.getFullYear()}</span>
-						<h2 className="heading-6">{months[date.getMonth()]}</h2>
-					</div>
-
-				</div>
-
-				<div className="calendar-body">
-					<div className="day-header">
-						{
-							weekdays.map(weekday => (
-								<div className="weekday" key={weekday}>
-									<span className="eyebrow">{weekday}</span>
-								</div>
-							))
-						}
-					</div>
-
-					<CalendarDays
-						selectedDay={date}
-						handleActiveForm={handleActiveForm}
-                        closeActiveForms={closeActiveForms}
-                        addExpense={addExpense}
-                        removeExpense={removeExpense}
-                        expenseGroups={expenseGroups}
-                        activeForm={activeForm}
-                        popupPosition={popupPosition}
-                        setPopupPosition={setPopupPosition}
-					/>
 				</div>
 			</div>
-		</div>
+
+			<div className={styles['calendar']}>
+				<div className={styles['container']}>
+					<div className={styles['calendar-header']}>
+
+						<div className={styles['adjacent-months-picker']}>
+							<button
+								className={clsx(
+									styles['btn'],
+									styles['prev']
+								)}
+								onClick={() => adjacentMonthHandler('previous')}
+								tabIndex={0}
+								aria-label="Previous Month"
+							>
+								<span className={styles['accessibility']}>Previous Month</span>
+							</button>
+							<button
+								className={clsx(
+									styles['btn'],
+									styles['next']
+								)}
+								onClick={() => adjacentMonthHandler('next')}
+								tabIndex={0}
+								aria-label="Previous Month"
+							>
+								<span className={styles['accessibility']}>Next Month</span>
+							</button>
+						</div>
+
+						<div className={styles['calendar-title']}>
+							<span className={styles['eyebrow']}>{date.getFullYear()}</span>
+							<h2 className={styles['heading-6']}>{months[date.getMonth()]}</h2>
+						</div>
+
+					</div>
+
+					<div className={styles['calendar-body']}>
+						<div className={styles['day-header']}>
+							{
+								weekdays.map(weekday => (
+									<div className={styles['weekday']} key={weekday}>
+										<span className={styles['eyebrow']}>{weekday}</span>
+									</div>
+								))
+							}
+						</div>
+
+						<CalendarDays
+							selectedDay={date}
+							handleActiveForm={handleActiveForm}
+							closeActiveForms={closeActiveForms}
+							addExpense={addExpense}
+							removeExpense={removeExpense}
+							expenseGroups={expenseGroups}
+							activeForm={activeForm}
+							popupPosition={popupPosition}
+							setPopupPosition={setPopupPosition}
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
 	);
 }
 

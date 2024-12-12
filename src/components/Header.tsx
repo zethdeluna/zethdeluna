@@ -23,7 +23,7 @@ const Header = () => {
 					<span className="line line-2"></span>
 				</button>
 
-				<nav role="navigation" className={navActive ? 'active' : ''}>
+				<nav className={navActive ? 'active' : ''}>
 					<ul className="container grid menu">
 						<li>
 							<Link to="/about" className="heading-1" onClick={handleClick}>
@@ -33,7 +33,7 @@ const Header = () => {
 							</Link>
 						</li>
 						<li>
-							<Link to="/work" className="heading-1" onClick={handleClick}>
+							<Link to="/projects" className="heading-1" onClick={handleClick}>
 								<SVG name="plumeria-smiley-laker" />
 								<span>Work</span>
 								<SVG name="plumeria-smiley-dodger" />

@@ -1,3 +1,5 @@
+import styles from '../ExpenseCalendar.module.css';
+import clsx from 'clsx';
 import { SelectOption } from "./ExpenseFormPopup";
 
 interface CustomSelectProps {
@@ -22,7 +24,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 
 	const toggleDropdown = (): void => {
 		if ( dropdownOpen === '' ) {
-			setDropdownOpen(' active');
+			setDropdownOpen('active');
 		} else {
 			setDropdownOpen('');
 		}
@@ -34,21 +36,46 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 	};
 
 	return (
-		<div className={`custom-select${dropdownOpen}`}>
-			<label htmlFor={name} className="eyebrow small">{label}</label>
+		<div
+			className={clsx(
+				styles['custom-select'],
+				dropdownOpen === 'active' && styles[dropdownOpen]
+			)}
+		>
+			<label
+				htmlFor={name}
+				className={clsx(
+					styles['eyebrow'],
+					styles['small']
+				)}
+			>
+				{label}
+			</label>
 			<button
 				type="button"
-				className="btn select small"
+				className={clsx(
+					styles['btn'],
+					styles['select'],
+					styles['small']
+				)}
 				onClick={toggleDropdown}
 			>
 				{value ? value.label : 'Select an option'}
 			</button>
-			<ul className="options small">
+			<ul
+				className={clsx(
+					styles['options'],
+					styles['small']
+				)}
+			>
 				{options?.map((option) => (
 					<li key={option.value}>
 						<button
 							type="button"
-							className="btn small"
+							className={clsx(
+								styles['btn'],
+								styles['small']
+							)}
 							onClick={() => handleClick(option)}
 						>
 							{option.label}

@@ -1,4 +1,3 @@
-import './styles.css';
 import Calendar from './components/Calendar';
 
 const ExpenseCalendar = () => {
