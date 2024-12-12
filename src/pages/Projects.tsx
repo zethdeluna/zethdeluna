@@ -1,6 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import Hero from "../components/pages/projects/Hero";
-import ExpenseCalendar from "../projects/expense-calendar/ExpenseCalendar";
+// import ExpenseCalendar from "../projects/expense-calendar/ExpenseCalendar";
 
 const Projects = () => {
 	return (
@@ -9,7 +9,7 @@ const Projects = () => {
 			<Hero />
 
 			<Outlet />
-			
+
 		</section>
 	);
 }
