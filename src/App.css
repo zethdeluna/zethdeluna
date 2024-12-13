@@ -50,7 +50,7 @@ Version: 1.0
 	--container-width: calc(1280 / 1440 * 100vw);
 	--container-max-width: 1600px;
 	--container-outer-margin: calc((100vw - var(--container-width)) / 2);
-	--container-outer-padding: 0;
+	--container-outer-padding: 40px;
 	--grid: repeat(12, minmax(0, 1fr));
 	--gap: 40px;
 	--bounce: cubic-bezier(0.250, 1.005, 0.360, 1.265);
@@ -1565,7 +1565,10 @@ footer .copyright {
     /* Intro */
 
     .intro article {
-        grid-column: 1 / span 6;
+        grid-column: 2 / span 5;
+		left: calc(-1 * var(--gap));
+		position: relative;
+		width: calc(100% + (2 * var(--gap)));
     }
 
     .intro .btn.arrow-btn {
@@ -1587,6 +1590,10 @@ footer .copyright {
         top: calc(-290 / 1400 * 100vw);
         width: calc(400 / 1400 * 100vw);
     }
+
+	.work-module ul[data-count="odd"] + .arrow-btn {
+		bottom: calc(100 / 1200 * 100vw);
+	}
 
 }
 
@@ -1639,6 +1646,10 @@ footer .copyright {
     }
 
     /*** Footer ***/
+
+	footer {
+		margin: 120px 0 0;
+	}
 
     /* Outro */
 
@@ -2142,6 +2153,21 @@ footer .copyright {
 	/*** Header ***/
 
 	/*** Footer ***/
+
+	footer .outro > h2.mega,
+	footer .outro > span {
+		font-size: calc(60rem / 16);
+		gap: var(--spacing-xsmall);
+		line-height: calc(50 / 60);
+	}
+
+	footer .outro > h2 {
+		padding: var(--spacing-medium) 0 0;
+	}
+
+	footer .outro > span {
+		margin: var(--spacing-xsmall) var(--spacing-small) 0 0;
+	}
 
 	footer .menu li:nth-child(1),
 	footer .menu li:nth-child(2),
