@@ -643,6 +643,7 @@ input::placeholder {
 }
 
 .calendar-day .custom-select .btn.select {
+	font-family: var(--body-font);
     font-weight: 400;
     text-align: left;
 }
@@ -679,6 +680,7 @@ input::placeholder {
 
 .custom-select .options .btn {
     border-radius: 2px;
+	font-family: var(--body-font);
     font-weight: 400;
     padding: 2px var(--text-spacing-xxsmall);
     text-align: left;
