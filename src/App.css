@@ -1502,7 +1502,8 @@ footer .copyright {
     padding: 120px 0;
 }
 
-.projects-page:has(section.project-container) .projects-hero {
+.projects-page:has(section.project-container) .projects-hero,
+.projects-page:has(section.project-container) .projects {
 	display: none;
 }
 
@@ -1532,6 +1533,27 @@ footer .copyright {
 
 .projects-hero h1 .work-text .brush-stroke g > g {
     fill: var(--heat);
+}
+
+/*** Projects List ***/
+
+.projects li {
+	grid-column: span 4;
+}
+
+.projects .project-card .image-container {
+	aspect-ratio: 400 / 306;
+	border-radius: 8px;
+	height: auto;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+
+.projects .project-card .image-container img {
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
 }
 
 /********************************************************************************************************************************************************************************************************/

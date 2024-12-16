@@ -1,17 +1,13 @@
 import styles from '../ExpenseCalendar.module.css';
 import clsx from 'clsx';
-import { Expense, PopupPosition } from "./Calendar";
-
-interface OpenDescription {
-	dayID: string;
-	expenseIndex: number;
-}
+import { useCallback, type JSX } from 'react';
+import { Expense, PopupPosition, DescriptionState } from "./Calendar";
 
 interface DescriptionProps {
 	expense: Expense;
 	dayID: string;
 	index: number;
-	openDescription: OpenDescription | null;
+	openDescription: DescriptionState | null;
 	toggleDescription: (dayID: string, index: number) => void;
 	buttonRefsMap: React.RefObject<Map <string, HTMLButtonElement> >;
 	removeExpense: (dayID: string, expenseId: string) => void;
@@ -28,64 +24,77 @@ const Description: React.FC<DescriptionProps> = ({
 	removeExpense,
 	position
 }) => {
-	return (
-		<div
-			id={`${styles['description']}-${dayID}`}
-			// className={`popup description ${openDescription &&
-			// 	openDescription.dayID === dayID &&
-			// 	openDescription.expenseIndex === index ? 'active' : ''
-			// }`}
-			className={clsx(
-				styles['popup'],
-				styles['description'],
-				openDescription &&
-				openDescription.dayID === dayID &&
-				openDescription.expenseIndex === index && styles['active']
 
-			)}
-			style={position ? {
-				left: position.left_position,
-				top: position.top_position
-			} : {}}
+	const isActive = 
+		openDescription
+		&& openDescription.dayID === dayID
+		&& openDescription.expenseIndex === index
+	;
+
+	const handleDelete = useCallback((): void => {
+		removeExpense(dayID, expense.id);
+		toggleDescription(dayID, index);
+	}, [dayID, expense.id, index, removeExpense, toggleDescription]);
+
+	const handleClose = useCallback((): void => {
+		toggleDescription(dayID, index);
+	}, [dayID, index, toggleDescription]);
+
+	const setButtonRef = useCallback((el: HTMLButtonElement| null): void => {
+		if ( el ) {
+			buttonRefsMap.current?.set(`${dayID}-${index}`, el);
+		}
+	}, [buttonRefsMap, dayID, index]);
+
+	/**
+	 * Render functions
+	 */
+	const renderCloseButton = (): JSX.Element => (
+		<button
+			type="button"
+			className={clsx( styles['btn'], styles['close'] )}
+			aria-label="Close description"
+			onClick={handleClose}
+			ref={setButtonRef}
 		>
-			<button
-				type="button"
-				className={clsx(
-					styles['btn'],
-					styles['close']
-				)}
-				aria-label="Close description"
-				tabIndex={0}
-				onClick={() => toggleDescription(dayID, index)}
-				ref={(el) => {
-					if ( el ) buttonRefsMap.current?.set(`${dayID}-${index}`, el);
-				}}
-			>
-				<span className={styles['accessibility']}>Close description</span>
-				<span className={styles['icon']}></span>
-			</button>
+			<span className={styles['accessibility']}>Close description</span>
+			<span className={styles['icon']}></span>
+		</button>
+	);
 
+	const renderExpenseDetails = (): JSX.Element => (
+		<>
 			<h4 className={styles['eyebrow']}>{expense.day.monthString} {expense.day.number}</h4>
 			<h5 className={styles['heading-5']} data-account-type={expense.account_type}>
 				{expense.account_type === 'expense' ? '-' : '+'}${expense.amount}
 			</h5>
 			<p className={styles['small']}>{expense.description}</p>
+		</>
+	);
 
-			<button
-				type="button"
-				className={clsx(
-					styles['btn'],
-					styles['delete']
-				)}
-				aria-label="Delete expense"
-				tabIndex={0}
-				onClick={() => {
-					removeExpense(dayID, expense.id);
-					toggleDescription(dayID, index);
-				}}
-			>
-				Delete
-			</button>
+	const renderDeleteButton = (): JSX.Element => (
+		<button
+			type="button"
+			className={clsx( styles['btn'], styles['delete'] )}
+			aria-label="Delete expense"
+			onClick={handleDelete}
+		>
+			Delete
+		</button>
+	);
+
+	return (
+		<div
+			id={`${styles['description']}-${dayID}`}
+			className={clsx( styles['popup'], styles['description'], isActive && styles['active'] )}
+			style={position ? {
+				left: position.left_position,
+				top: position.top_position
+			} : {}}
+		>
+			{renderCloseButton()}
+			{renderExpenseDetails()}
+			{renderDeleteButton()}
 		</div>
 	);
 }

@@ -5,10 +5,9 @@ interface WorkCardProps {
 	svg?: string;
 	title?: string;
 	link?: string;
-	category?: string;
 };
 
-const WorkCard: React.FC<WorkCardProps> = ({ svg, title, link, category }) => {
+const WorkCard: React.FC<WorkCardProps> = ({ svg, title, link }) => {
 
 	return (
 		<li>
@@ -20,7 +19,6 @@ const WorkCard: React.FC<WorkCardProps> = ({ svg, title, link, category }) => {
 				<div className="image-container"></div>
 				<div className="metadata">
 					{title !== '' && <h3 className="heading-5">{title}</h3>}
-					{category !== '' && <span className="eyebrow">{category}</span>}
 				</div>
 				<div className="hover-text heading-5">
 					Take a look

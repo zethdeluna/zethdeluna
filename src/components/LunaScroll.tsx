@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 /**
  * Luna Scroll Logic
@@ -40,20 +40,21 @@ export const useLunaScroll = () => {
 };
 
 interface LunaScrollProps {
+	tag?: keyof JSX.IntrinsicElements;
 	children: React.ReactNode;
 	animation?: string;
 };
 
-export const LunaScroll: React.FC<LunaScrollProps> = ({ children, animation = '' })  => {
+export const LunaScroll: React.FC<LunaScrollProps> = ({ tag = 'div', children, animation = '' })  => {
 	const { ref, isInViewport } = useLunaScroll();
 
-	return (
-		<div
-			ref={ref}
-			className={`${isInViewport ? 'animate' : ''}`}
-			data-luna-scroll={animation}
-		>
-			{children}
-		</div>
-	);
+	return React.createElement(
+		tag,
+		{
+			ref: ref,
+			className: `${isInViewport ? 'animate' : ''}`,
+			'data-luna-scroll': animation
+		},
+		children
+	  );
 }

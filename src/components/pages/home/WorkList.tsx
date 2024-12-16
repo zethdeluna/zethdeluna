@@ -7,19 +7,16 @@ const WorkList = () => {
 				svg=""
 				title="Project 1"
 				link=""
-				category="Category"
 			/>
 			<WorkCard
 				svg="sun"
 				title="Project 2"
 				link=""
-				category="Category"
 			/>
 			<WorkCard
 				svg="star"
 				title="Project 3"
 				link=""
-				category="Category"
 			/>
 		</ul>
 	);

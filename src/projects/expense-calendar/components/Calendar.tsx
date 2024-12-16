@@ -4,13 +4,16 @@ import { useState, useCallback, useEffect } from "react";
 import CalendarDays from "./CalendarDays";
 import { CalendarDay } from "./CalendarDays";
 
+export type AccountType = 'expense' | 'income';
+export type FrequencyType = 'one-time' | 'weekly' | 'bi-weekly' | 'monthly' | 'annually';
+
 export interface Expense {
 	id: string;
 	originalId?: string;
 	amount: number;
-	account_type: 'expense' | 'income';
+	account_type: AccountType;
 	date: Date;
-	frequency: 'one-time' | 'weekly' | 'bi-weekly' | 'monthly' | 'annually';
+	frequency: FrequencyType
 	description?: string;
 	day: CalendarDay
 }
@@ -24,6 +27,20 @@ export interface PopupPosition {
 	top_position?: string;
 }
 
+export interface DescriptionState {
+	dayID: string;
+	expenseIndex: number;
+}
+
+const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as const;
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as const;
+const RECURRING_INSTANCES = 12;
+
+const INITIAL_POPUP_POSITION: PopupPosition = {
+	left_position: '50%',
+	top_position: '50%'
+};
+
 const Calendar = () => {
 	const [date, setDate] = useState<Date>(new Date());
 	const [expenseGroups, setExpenseGroups] = useState<ExpenseGroups>(() => {
@@ -31,208 +48,167 @@ const Calendar = () => {
 		return savedExpenses ? JSON.parse(savedExpenses) : {};
 	});
 	const [activeForm, setActiveForm] = useState<string | null>(null);
-	const [popupPosition, setPopupPosition] = useState<PopupPosition>({});
+	const [popupPosition, setPopupPosition] = useState<PopupPosition>(INITIAL_POPUP_POSITION);
 
-	const weekdays: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-	const months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-	// store expenseGroups in localStorage
+	/**
+	 * Persist expenseGroups to localStorage
+	 */
 	useEffect(() => {
 		localStorage.setItem('expenseGroups', JSON.stringify(expenseGroups));
 	}, [expenseGroups]);
 
+	/**
+	 * Generate unique IDs for each day
+	 */
 	const generateDayId = (date: Date): string => {
 		let month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(date);
 		return `${month}-${date.getDate()}-${date.getFullYear()}`;
 	}
 
-	// generate multiple instances of a recurring expense across different dates
-	const generateRecurringExpenses = (baseDate: Date, expense: Expense): { dayID: string; expense: Expense  }[] => {
-		const recurringExpenses: { dayID: string; expense: Expense }[] = [];
+	/**
+	 * Generate multiple instances of a recurring expense across different dates
+	 */
+	const generateRecurringExpenses = ( baseDate: Date, expense: Expense) => {
 
-		recurringExpenses.push({
-			dayID: generateDayId(baseDate),
-			expense: {
-				...expense,
-				id: `${expense.id}-${baseDate.getTime()}`,
-				originalId: expense.id,
-				date: baseDate
-			}
-		});
+		const recurringExpenses: Array<{ dayID: string; expense: Expense }> = [];
 
-		// generate past instances
-		for ( let i = 1; i <= 12; i++ ) {
-			const pastDate = new Date(baseDate);
-			switch (expense.frequency) {
+		const addExpenseInstance = ( date: Date ) => {
+			recurringExpenses.push({
+				dayID: generateDayId(date),
+				expense: {
+					...expense,
+					id: `${expense.id}-${date.getTime()}`,
+					originalId: expense.id,
+					date
+				}
+			});
+		};
+
+		// add initial instance
+		addExpenseInstance(baseDate);
+
+		const generateDateForFrequency = ( date: Date, offset: number, isPast: boolean ): Date => {
+			const newDate = new Date(date);
+			const multiplier = isPast ? -1 : 1;
+
+			switch ( expense.frequency ) {
 				case 'annually':
-					pastDate.setMonth(baseDate.getMonth() - (i * 12));
+					newDate.setMonth( date.getMonth() + (offset * 12 * multiplier) );
 					break;
 				case 'monthly':
-					pastDate.setMonth(baseDate.getMonth() - i);
+					newDate.setMonth( date.getMonth() + (offset * multiplier) );
 					break;
 				case 'bi-weekly':
-					pastDate.setDate(baseDate.getDate() - (i * 14));
+					newDate.setDate( date.getDate() + (offset * 14 * multiplier) );
 					break;
 				case 'weekly':
-					pastDate.setDate(baseDate.getDate() - (i * 7));
-					break;
-				default:
+					newDate.setDate( date.getDate() + (offset * 7 * multiplier) );
 					break;
 			}
 
-			const pastExpense: Expense = {
-				...expense,
-				id: `${expense.id}-${pastDate.getTime()}`,
-				originalId: expense.id,
-				date: pastDate
-			}
+			return newDate;
+		};
 
-			recurringExpenses.push({
-				dayID: generateDayId(pastDate),
-				expense: pastExpense
-			});
-		}
+		// generate past and future instances
+		for ( let i = 1; i <= RECURRING_INSTANCES; i++ ) {
 
-		// generate future instances
-		for ( let i = 1; i <= 12; i++ ) {
-			const futureDate = new Date(baseDate);
-			switch (expense.frequency) {
-				case 'annually':
-					futureDate.setMonth(baseDate.getMonth() + (i * 12));
-					break;
-				case 'monthly':
-					futureDate.setMonth(baseDate.getMonth() + i);
-					break;
-				case 'bi-weekly':
-					futureDate.setDate(baseDate.getDate() + (i * 14));
-					break;
-				case 'weekly':
-					futureDate.setDate(baseDate.getDate() + (i * 7));
-					break;
-				default:
-					break;
-			}
+			addExpenseInstance( generateDateForFrequency(baseDate, i, true) );
+			addExpenseInstance( generateDateForFrequency(baseDate, i, false) );
 
-			const futureExpense: Expense = {
-				...expense,
-				id: `${expense.id}-${futureDate.getTime()}`,
-				originalId: expense.id,
-				date: futureDate
-			}
-
-			recurringExpenses.push({
-				dayID: generateDayId(futureDate),
-				expense: futureExpense
-			});
 		}
 
 		return recurringExpenses;
 
 	};
 
-	// close expense forms that are open
-	const closeActiveForms = (): void => {
+	/**
+	 * Close expense forms that are open
+	 */
+	const closeActiveForms = useCallback((): void => {
 		setActiveForm(null);
-		setPopupPosition({
-			left_position: '50%',
-			top_position: '50%'
+		setPopupPosition(INITIAL_POPUP_POSITION);
+	}, []);
+
+	/**
+	 * Open form when a day is clicked
+	 */
+	const handleActiveForm = useCallback((dayID: string): void => {
+		setActiveForm(dayID);
+	}, []);
+
+	/**
+	 * Change current month using arrow buttons
+	 */
+	const adjacentMonthHandler = ( direction: 'previous' | 'next' ): void => {
+		closeActiveForms();
+
+		setDate(currentDate => {
+			if ( direction === 'previous' ) {
+				return new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+			} else {
+				return new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+			}
 		});
 	};
 
-	// open form when a day is clicked
-	const handleActiveForm = ( dayID: string ): void => {
-		setActiveForm(dayID);
-	}
-
-	// change current month using arrow buttons
-	const adjacentMonthHandler = ( event: 'previous' | 'next' ): void => {
-		closeActiveForms();
-
-		let thisDate = date;
-
-		if ( event === 'previous' ) {
-			// move to previous month
-
-			thisDate.setDate(0); // sets date to last day of previous month
-			thisDate.setDate(1);// sets date to first day of new current month
-
-			setDate( new Date(thisDate.getFullYear(), thisDate.getMonth(), 1) );
-		} else {
-			// move to next month
-
-			if ( thisDate.getMonth() === 11 ) {
-				setDate( new Date(thisDate.getFullYear() + 1, 0, 1) );
-			} else {
-				setDate( new Date(thisDate.getFullYear(), thisDate.getMonth() + 1, 1) );
-			}
-		}
-	};
-
-	// Add expense data to expenseGroups
-	const addExpense = useCallback((dayID: string, newItem: Expense): void => {
+	/**
+	 * Add expense data to expenseGroups
+	 */
+	const addExpense = useCallback(( dayID: string, newItem: Expense ): void => {
 
 		setExpenseGroups(currentExpenses => {
 			const updatedExpenses = { ...currentExpenses };
 			const baseDate = new Date(newItem.date);
 
-			if ( newItem.frequency !== 'one-time' ) {
-				// If it's a recurring expense, add recurring instances
-
-				const recurringExpenses = generateRecurringExpenses( baseDate, newItem );
-
-				recurringExpenses.forEach(({dayID: recurringDayId, expense}) => {
-					if ( !updatedExpenses[recurringDayId] ) {
-						updatedExpenses[recurringDayId] = [];
-					}
-					updatedExpenses[recurringDayId].push(expense);
-				});
-			} else {
-				// For non-recurring expenses, just add the single expense
-
+			if ( newItem.frequency === 'one-time' ) {
 				updatedExpenses[dayID] = [...(updatedExpenses[dayID] || []), newItem];
+				return updatedExpenses;
 			}
 
+			const recurringExpenses = generateRecurringExpenses(baseDate, newItem);
+			recurringExpenses.forEach(( { dayID: recurringDayId, expense } ) => {
+				if ( !updatedExpenses[recurringDayId] ) {
+					updatedExpenses[recurringDayId] = [];
+				}
+				updatedExpenses[recurringDayId].push(expense);
+			});
 			return updatedExpenses;
 		});
 
-	}, []);
+	}, [generateRecurringExpenses]);
 
-	// Remove expense data from expenseGroups
-	const removeExpense = useCallback((groupKey: string, itemToRemove: string): void => {
+	/**
+	 * Remove expense data from expenseGroups
+	 */
+	const removeExpense = useCallback(( groupKey: string, itemToRemove: string ): void => {
 
 		setExpenseGroups(currentExpenses => {
 			const updatedExpenses = { ...currentExpenses };
-
-			// Find the original expense to check if it's recurring
 			const group = updatedExpenses[groupKey];
 			const expenseToRemove = group?.find(item => item.id === itemToRemove);
 
-			// exit if the expense to remove isn't found
-			if (!expenseToRemove) return updatedExpenses;
+			if ( !expenseToRemove ) return updatedExpenses;
 
-			if ( expenseToRemove.frequency !== 'one-time' )  {
-
-				// Remove all instances of this recurring expense
-				const originalId = expenseToRemove.originalId || expenseToRemove.id;
-				Object.keys(updatedExpenses).forEach(dayID => {
-					updatedExpenses[dayID] = updatedExpenses[dayID].filter(
-						item => !(item.originalId === originalId || item.id === originalId)
-					);
-
-					// Clean up empty groups
-					if ( updatedExpenses[dayID].length === 0 ) {
-						delete updatedExpenses[dayID];
-					}
-				});
-
-			} else {
-				// Remove singular expense
-
+			if ( expenseToRemove.frequency === 'one-time' ) {
 				updatedExpenses[groupKey] = group.filter(item => item.id !== itemToRemove);
 				if ( updatedExpenses[groupKey].length === 0 ) {
 					delete updatedExpenses[groupKey];
 				}
+				return updatedExpenses;
 			}
+
+			// remove all instances of recurring expense
+			const originalId = expenseToRemove.originalId || expenseToRemove.id;
+			Object.keys( updatedExpenses ).forEach(dayID => {
+				updatedExpenses[dayID] = updatedExpenses[dayID].filter(
+					item => !(item.originalId === originalId || item.id === originalId)
+				);
+
+				if ( updatedExpenses[dayID].length === 0 ) {
+					delete updatedExpenses[dayID];
+				}
+
+			});
 
 			return updatedExpenses;
 		});
@@ -240,17 +216,12 @@ const Calendar = () => {
 	}, []);
 
 	return (
-		<section className={`project-container ${styles['expense-calendar']}`}>
+		<section className={clsx( 'project-container', styles['expense-calendar'] )}>
 			
 			<div className={styles['calendar-hero']}>
 				<div className={styles['container']}>
 
-					<h1
-						className={clsx(
-							styles['title'],
-							styles['heading-4']
-						)}
-					>
+					<h1 className={clsx( styles['title'], styles['heading-4'] )}>
 						Expense Calendar
 					</h1>
 
@@ -263,24 +234,16 @@ const Calendar = () => {
 
 						<div className={styles['adjacent-months-picker']}>
 							<button
-								className={clsx(
-									styles['btn'],
-									styles['prev']
-								)}
+								className={clsx( styles['btn'], styles['prev'] )}
 								onClick={() => adjacentMonthHandler('previous')}
-								tabIndex={0}
 								aria-label="Previous Month"
 							>
 								<span className={styles['accessibility']}>Previous Month</span>
 							</button>
 							<button
-								className={clsx(
-									styles['btn'],
-									styles['next']
-								)}
+								className={clsx( styles['btn'], styles['next'] )}
 								onClick={() => adjacentMonthHandler('next')}
-								tabIndex={0}
-								aria-label="Previous Month"
+								aria-label="Next Month"
 							>
 								<span className={styles['accessibility']}>Next Month</span>
 							</button>
@@ -288,7 +251,7 @@ const Calendar = () => {
 
 						<div className={styles['calendar-title']}>
 							<span className={styles['eyebrow']}>{date.getFullYear()}</span>
-							<h2 className={styles['heading-6']}>{months[date.getMonth()]}</h2>
+							<h2 className={styles['heading-6']}>{MONTHS[date.getMonth()]}</h2>
 						</div>
 
 					</div>
@@ -296,7 +259,7 @@ const Calendar = () => {
 					<div className={styles['calendar-body']}>
 						<div className={styles['day-header']}>
 							{
-								weekdays.map(weekday => (
+								WEEKDAYS.map(weekday => (
 									<div className={styles['weekday']} key={weekday}>
 										<span className={styles['eyebrow']}>{weekday}</span>
 									</div>

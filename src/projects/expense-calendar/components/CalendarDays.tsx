@@ -1,7 +1,7 @@
 import styles from '../ExpenseCalendar.module.css';
 import clsx from 'clsx';
-import { useRef, useState, useCallback, useEffect } from "react";
-import { Expense, ExpenseGroups, PopupPosition } from './Calendar';
+import React, { useRef, useState, useCallback, useEffect, type JSX } from "react";
+import { Expense, ExpenseGroups, PopupPosition, DescriptionState } from './Calendar';
 import ExpenseFormPopup from "./ExpenseFormPopup";
 import Description from "./Description";
 
@@ -15,7 +15,7 @@ export interface CalendarDay {
 	monthString?: string;
 }
 
-// interface OpenDescription {
+// export interface DescriptionState {
 // 	dayID: string;
 // 	expenseIndex: number;
 // }
@@ -45,200 +45,222 @@ const CalendarDays: React.FC<CalendarDayProps> = ({
 }) => {
 	const daysRef = useRef<HTMLDivElement | null>(null);
 	const buttonRefsMap = useRef<Map<string, HTMLButtonElement>>(new Map());
-	const [openDescription, setOpenDescription] = useState<{ dayID: string; expenseIndex: number; } | null>(null);
+	const [openDescription, setOpenDescription] = useState< DescriptionState | null>(null);
 
-	const today = new Date();
-	const firstDayOfMonth = new Date(selectedDay.getFullYear(), selectedDay.getMonth(), 1);
-	const weekdayOfFirstDay = firstDayOfMonth.getDay();
-	const currentDays: CalendarDay[] = [];
+	/**
+	 * Build calendar
+	 */
+	const generateCalendarDays = useCallback((): CalendarDay[] => {
 
-	// build the days of the calendar
-	for ( let day = 0; day < 42; day++ ) {
+		const today = new Date();
+		const firstDayOfMonth = new Date(selectedDay.getFullYear(), selectedDay.getMonth(), 1);
+		const weekdayOfFirstDay = firstDayOfMonth.getDay();
+		const currentDays: CalendarDay[] = [];
 
-		if ( day === 0 && weekdayOfFirstDay === 0 ) {
-			firstDayOfMonth.setDate(firstDayOfMonth.getDate() - 7);
-		} else if ( day === 0 ) {
-			firstDayOfMonth.setDate(firstDayOfMonth.getDate() + (day - weekdayOfFirstDay));
+		// adjust starting date if needed
+		if ( weekdayOfFirstDay === 0 ) {
+			firstDayOfMonth.setDate( firstDayOfMonth.getDate() - 7 );
 		} else {
-			firstDayOfMonth.setDate(firstDayOfMonth.getDate() + 1);
+			firstDayOfMonth.setDate( firstDayOfMonth.getDate() - weekdayOfFirstDay );
 		}
 
-		const calendarDay: CalendarDay = {
-			currentMonth: (firstDayOfMonth.getMonth() === selectedDay.getMonth()),
-			date: new Date(firstDayOfMonth),
-			month: firstDayOfMonth.getMonth(),
-			number: firstDayOfMonth.getDate(),
-			isToday: (firstDayOfMonth.getMonth() === today.getMonth() && firstDayOfMonth.toDateString() === today.toDateString()),
-			year: firstDayOfMonth.getFullYear()
-		};
+		// generate 42 days (6 weeks)
+		for ( let day = 0; day < 42; day++ ) {
 
-		currentDays.push(calendarDay);
+			if ( day > 0 ) {
+				firstDayOfMonth.setDate( firstDayOfMonth.getDate() + 1 );
+			}
 
-	}
+			currentDays.push({
+				currentMonth: firstDayOfMonth.getMonth() === selectedDay.getMonth(),
+				date: new Date(firstDayOfMonth),
+				month: firstDayOfMonth.getMonth(),
+				number: firstDayOfMonth.getDate(),
+				isToday: firstDayOfMonth.toDateString() === today.toDateString(),
+				year: firstDayOfMonth.getFullYear()
+			});
 
-	// handle expense description popups
-	const toggleDescription = ( dayID: string, expenseIndex: number ): void => {
+		}
+
+		return currentDays;
+
+	}, [selectedDay]);
+
+	/**
+	 * Handle expense description popups
+	 */
+	const toggleDescription = useCallback(( dayID: string, expenseIndex: number ): void => {
 		closeActiveForms();
 
 		setOpenDescription(prevState =>
-			prevState && prevState.dayID === dayID && prevState.expenseIndex === expenseIndex
+			prevState?.dayID === dayID && prevState.expenseIndex === expenseIndex
 				? null
 				: { dayID, expenseIndex }
 		);
-	};
+	}, [closeActiveForms]);
 
-	// open popup to add a new expense
-	const acitveFormHandler = useCallback((dayID: string): void => {
+	/**
+	 * Open popup to add a new expense
+	 */
+	const activeFormHandler = useCallback((dayID: string): void => {
 
 		setOpenDescription(null);
 		handleActiveForm(dayID);
 
 	}, [handleActiveForm]);
 
-	// get popup position, adjust if it's off screen
-	const calculatePopupPosition = ( popup: Element ): { left_position: string; top_position: string; } => {
+	/**
+	 * Get popup position, adjust if it's off screen
+	 */
+	const calculatePopupPosition = useCallback(( popup: Element ): PopupPosition => {
+
+		const rect = popup.getBoundingClientRect();
+		const popupElement = popup as HTMLElement;
 		let left_position = '';
 		let top_position = '';
 
-		const rect = popup.getBoundingClientRect();
-		let left = rect.left - ( (popup as HTMLElement).offsetWidth * 0.1 );
-		let right = rect.right + ( (popup as HTMLElement).offsetWidth * 0.1 );
+		// calculate horizontal position
+		const left = rect.left - (popupElement.offsetWidth * 0.1);
+		const right = rect.right + (popupElement.offsetWidth * 0.1);
 
 		if ( left <= 0 ) {
-			left += (left * -2) + 40;
-			left_position = `calc(50% + ${left}px)`;
+			const leftOffset = (left * -2) + 40;
+			left_position = `calc(50% + ${leftOffset}px)`;
 		} else if ( right >= window.innerWidth ) {
-			let rightOffset = right - window.innerWidth + 40;
+			const rightOffset = right - window.innerWidth + 40;
 			left_position = `calc(50% - ${rightOffset}px)`;
 		}
 
-		let bottom = rect.bottom + ( (popup as HTMLElement).offsetHeight * 0.2 );
-		let difference = bottom - window.innerHeight + 20;
-		if ( difference > 0 ) {
-			top_position = `calc(50% - ${difference}px)`;
-		} else if ( difference <= 0 && difference > -40 ) {
-			top_position = `calc(50% - ${difference}px)`;
+		// calculate vertical position
+		const bottom = rect.bottom + (popupElement.offsetHeight * 0.2);
+		const top = rect.top - (popupElement.offsetHeight * 0.2);
+		
+		const bottomOffset = bottom - window.innerHeight + 20;
+		const topOffset = top;
+		if ( bottomOffset > -40 ) {
+			top_position = `calc(50% - ${bottomOffset}px)`;	
+		} else if ( topOffset < 40 ) {
+			top_position = `calc(50% + ${Math.abs(topOffset)}px)`;
 		}
+
+		console.log(top_position);
 
 		return { left_position, top_position };
-	};
 
-	// effect for handling form popup position
+	}, []);
+
+	/**
+	 * Handle popup positioning
+	 */
+	const updatePopupPosition = useCallback(( elementId: string, popupClassName: string ): void => {
+
+		if ( !daysRef.current ) return;
+
+		const dayElement = daysRef.current.querySelector(`#${elementId}`);
+		if ( !dayElement ) return;
+
+		const popup = dayElement.querySelector(`.${styles[popupClassName]}`);
+		if ( popup ) {
+			const position = calculatePopupPosition(popup);
+			setPopupPosition(position);
+		}
+
+	}, [calculatePopupPosition, setPopupPosition]);
+
+	// effect for form popup position
 	useEffect(() => {
-		if ( activeForm && daysRef.current ) {
+		if ( activeForm ) {
+			updatePopupPosition(activeForm, 'expense-form-popup');
+		}
+	}, [activeForm, updatePopupPosition]);
 
-			const dayElement = daysRef.current.querySelector(`#${activeForm}`);
-			if ( dayElement ) {
+	// effect for description popup position
+	useEffect(() => {
+		if ( openDescription ) {
+			updatePopupPosition(openDescription.dayID, 'description');
+		}
+	}, [openDescription, updatePopupPosition]);
 
-				const popup = dayElement.querySelector('.expense-form-popup');
-				if ( popup ) {
+	/**
+	 * Render functions
+	 */
+	const renderExpenseItem = useCallback(( expense: Expense, index: number, dayID: string ): JSX.Element => (
 
-					const position = calculatePopupPosition(popup);
-					setPopupPosition(position);
+		<div key={index} className={styles['expense-item']}>
 
+			<button
+				className={clsx( styles['btn'], styles['amount'], styles['eyebrow'], styles[expense.account_type] )}
+				onClick={() => toggleDescription(dayID, index)}
+			>
+				{expense.account_type === 'expense' ? '-' : '+'}${expense.amount.toFixed(2)}
+			</button>
+
+			<Description
+				expense={expense}
+				dayID={dayID}
+				index={index}
+				openDescription={openDescription}
+				toggleDescription={toggleDescription}
+				buttonRefsMap={buttonRefsMap}
+				removeExpense={removeExpense}
+				position={
+					openDescription?.dayID === dayID && openDescription.expenseIndex === index
+						? popupPosition
+						: null
+				}
+			/>
+
+		</div>
+
+	), [openDescription, popupPosition, removeExpense, toggleDescription]);
+
+	const renderCalendarDay = useCallback(( day: CalendarDay ): JSX.Element => {
+
+		const dayID = `${day.monthString}-${day.number}-${day.year}`;
+		const dayExpenses = expenseGroups[dayID] || [];
+
+		return (
+			<div
+				id={dayID}
+				className={clsx( styles['calendar-day'], day.currentMonth && styles['current-month'], day.isToday && styles['today'] )}
+				data-date={day.date.toString()}
+				key={dayID}
+			>
+
+				<span className={styles['eyebrow']}>{day.number}</span>
+
+				<div className={styles['add-expense']} role="button" onClick={() => activeFormHandler(dayID)} tabIndex={0}>
+					<span className="accessibility">Add Expense</span>
+				</div>
+
+				<ExpenseFormPopup
+					day={day}
+					dayID={dayID}
+					closeActiveForms={closeActiveForms}
+					addExpense={addExpense}
+					isActive={activeForm === dayID}
+					position={activeForm === dayID ? popupPosition : null}
+				/>
+
+				{
+					dayExpenses.map((expense, index) =>
+						renderExpenseItem(expense, index, dayID)
+					)
 				}
 
-			}
+			</div>
+		);
 
-		}
-	}, [activeForm]);
+	}, [activeForm, addExpense, closeActiveForms, expenseGroups, handleActiveForm, popupPosition, renderExpenseItem]);
 
-	// effect for handling description popup position
-	useEffect(() => {
-		if ( openDescription && daysRef.current ) {
-
-			const dayElement = daysRef.current.querySelector(`#${openDescription.dayID}`);
-			if ( dayElement ) {
-
-				const popup = dayElement.querySelector('.description');
-				if ( popup ) {
-
-					const position = calculatePopupPosition(popup);
-					setPopupPosition(position);
-
-				}
-
-			}
-
-		}
-	}, [openDescription]);
+	const calendarDays = generateCalendarDays();
 
 	return (
 		<div className={styles['days']} ref={daysRef}>
 			{
-				currentDays.map(day => {
+				calendarDays.map(day => {
 					day.monthString = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(day.date);
-					const dayID = `${day.monthString}-${day.number}-${day.year}`;
-					const dayExpenses = expenseGroups[dayID] || [];
-
-					return (
-						<div
-							id={dayID}
-							className={clsx(
-								styles['calendar-day'],
-								day.currentMonth && styles['current-month'],
-								day.isToday && styles['today']
-							)}
-							data-date={day.date.toString()}
-							key={dayID}
-						>
-							<span className={styles['eyebrow']}>{day.number}</span>
-
-							<div
-								className={styles['add-expense']}
-								role="button"
-								onClick={() => acitveFormHandler(dayID)}
-								tabIndex={0}
-							>
-								<span className="accessibility">Add Expense</span>
-							</div>
-
-							<ExpenseFormPopup
-								day={day}
-								dayID={dayID}
-								closeActiveForms={closeActiveForms}
-								addExpense={addExpense}
-								isActive={activeForm === dayID}
-								position={activeForm === dayID ? popupPosition : null}
-							/>
-
-							{dayExpenses.length > 0 && (
-								dayExpenses.map((expense, index) => (
-									<div key={index} className={styles['expense-item']}>
-										<button
-											className={clsx(
-												styles['btn'],
-												styles['amount'],
-												styles['eyebrow'],
-												styles[expense.account_type]
-											)}
-											onClick={() => toggleDescription(dayID, index)}
-										>
-											{expense.account_type === 'expense' ? '-' : '+'}${expense.amount.toFixed(2)}
-										</button>
-
-										<Description
-											expense={expense}
-											dayID={dayID}
-											index={index}
-											openDescription={openDescription}
-											toggleDescription={toggleDescription}
-											buttonRefsMap={buttonRefsMap}
-											removeExpense={removeExpense}
-											position={
-												openDescription &&
-												openDescription.dayID === dayID &&
-												openDescription.expenseIndex === index
-													? popupPosition
-													: null
-											}
-										/>
-									</div>
-								))
-							)}
-
-						</div>
-					);
+					return renderCalendarDay(day);
 				})
 			}
 		</div>
