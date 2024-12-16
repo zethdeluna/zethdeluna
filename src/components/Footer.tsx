@@ -36,7 +36,7 @@ const Footer = () => {
 					</Link>
 				</li>
 				<li>
-					<Link to="/work" className="heading-1">
+					<Link to="/projects" className="heading-1">
 						<SVG name="plumeria-smiley-laker" />
 						<span>Work</span>
 						<SVG name="plumeria-smiley-dodger" />
