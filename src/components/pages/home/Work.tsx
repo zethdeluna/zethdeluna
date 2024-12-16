@@ -20,7 +20,7 @@ const Work = () => {
 
 				<WorkList />
 
-				<Link to="/work" className="btn arrow-btn heading-2">
+				<Link to="/projects" className="btn arrow-btn heading-2">
 					See all projects
 					<SVG name="arrow-right" />
 				</Link>
