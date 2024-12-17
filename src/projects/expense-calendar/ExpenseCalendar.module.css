@@ -104,6 +104,11 @@ body:has(.expense-calendar) {
 	position: relative;
 }
 
+body:has(.expense-form-popup.active, .description.active),
+body:has(.expense-form-popup.active, .description.active) .calendar-body {
+	overflow: hidden;
+}
+
 body:has(.expense-calendar):before {
     background: var(--seaweed);
     content: '';
@@ -389,6 +394,10 @@ input::placeholder {
     position: absolute;
     top: 0;
     width: 100%;
+}
+
+.calendar-body .day-header .weekday .short {
+	display: none;
 }
 
 /*Dates*/
@@ -716,4 +725,120 @@ input::placeholder {
 
 .custom-select .options .btn:hover {
     background: var(--seaweed-10);
+}
+
+/********************************************************************************************************************************************************************************************************/
+
+/*MQ MAX-WIDTH 1200*/
+
+/********************************************************************************************************************************************************************************************************/
+
+@media only screen and (max-width: 75em) {
+
+	.calendar-day .expense-item .amount:before {
+		display: none;
+	}
+
+}
+
+/********************************************************************************************************************************************************************************************************/
+
+/*MQ MAX-WIDTH 950*/
+
+/********************************************************************************************************************************************************************************************************/
+
+@media only screen and (max-width: 59.375em) {
+
+	.calendar-body .day-header .weekday .long {
+		display: none;
+	}
+
+	.calendar-body .day-header .weekday .short {
+		display: block;
+		font-size: calc(10rem / 16);
+	}
+
+	.calendar-day .expense-item .amount {
+		overflow: hidden;
+		padding: var(--text-spacing-xxsmall);
+	}
+
+	.calendar-day .expense-item .amount:before {
+		background: unset;
+		content: '';
+		display: block;
+		filter: unset;
+		height: 100%;
+		position: absolute;
+		right: 0;
+		top: 0;
+		transform: translate3d(0, 0, 0);
+		width: 24px;
+	}
+
+	.calendar-day .expense-item .amount:hover:before {
+		transform: translate3d(0, 0, 0);
+	}
+
+	.calendar-day .expense-item .amount.income:before {
+		background: linear-gradient(to right, transparent, var(--bokchoy));
+	}
+
+	.calendar-day .expense-item .amount.expense:before {
+		background: linear-gradient(to right, transparent, var(--strawberry-milk));
+	}
+
+}
+
+/********************************************************************************************************************************************************************************************************/
+
+/*MQ MAX-WIDTH 650*/
+
+/********************************************************************************************************************************************************************************************************/
+
+@media only screen and (max-width: 40.625em) {
+
+	.calendar-hero {
+		padding: var(--module-spacing-small) 0 var(--text-spacing-large);
+	}
+
+	.calendar-hero h1.heading-4 {
+		font-size: calc(36rem / 16);
+		letter-spacing: -0.4px;
+		line-height: calc(40 / 36);
+	}
+
+	.calendar-header {
+		margin: 0 0 var(--text-spacing-small);
+	}
+
+	.calendar-header .adjacent-months-picker {
+		bottom: 7px;
+		gap: 4px;
+		left: -10px;
+	}
+
+	.calendar-body {
+		height: max-content;
+		left: calc(-1 * var(--container-padding));
+		overflow: auto hidden;
+		padding: 0 var(--container-padding);
+		position: relative;
+		width: calc(100% + (2 * var(--container-padding)));
+	}
+
+	.calendar-body .day-header,
+	.calendar-body .days {
+		min-width: 800px;
+	}
+
+	.calendar-day .expense-item .description,
+	.calendar-day .popup {
+		left: 50% !important;
+		position: fixed;
+		top: 50% !important;
+		transform: translate3d(-50%, -50%, 0) !important;
+		width: calc(100vw - (2 * var(--text-spacing-small)));
+	}
+
 }

@@ -32,7 +32,15 @@ export interface DescriptionState {
 	expenseIndex: number;
 }
 
-const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as const;
+const WEEKDAYS = [
+	['Sunday', 'Sun'],
+	['Monday', 'Mon'],
+	['Tuesday', 'Tues'],
+	['Wednesday', 'Wed'],
+	['Thursday', 'Thurs'],
+	['Friday', 'Fri'],
+	['Saturday', 'Sat']
+] as const;
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as const;
 const RECURRING_INSTANCES = 12;
 
@@ -260,8 +268,9 @@ const Calendar = () => {
 						<div className={styles['day-header']}>
 							{
 								WEEKDAYS.map(weekday => (
-									<div className={styles['weekday']} key={weekday}>
-										<span className={styles['eyebrow']}>{weekday}</span>
+									<div className={styles['weekday']} key={weekday[0]}>
+										<span className={clsx( styles['eyebrow'], styles['long'] )}>{weekday[0]}</span>
+										<span className={clsx( styles['eyebrow'], styles['short'] )}>{weekday[1]}</span>
 									</div>
 								))
 							}

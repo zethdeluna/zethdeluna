@@ -15,11 +15,6 @@ export interface CalendarDay {
 	monthString?: string;
 }
 
-// export interface DescriptionState {
-// 	dayID: string;
-// 	expenseIndex: number;
-// }
-
 interface CalendarDayProps {
 	selectedDay: Date;
 	handleActiveForm: (dayID: string) => void;
