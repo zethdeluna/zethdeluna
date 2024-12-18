@@ -1558,6 +1558,122 @@ footer .copyright {
 
 /********************************************************************************************************************************************************************************************************/
 
+/*PROJECTS DETAIL STYLES*/
+
+/********************************************************************************************************************************************************************************************************/
+
+.project-module {
+	margin: 120px 0 0;
+}
+
+.project-detail-hero + .project-module {
+	margin: 0;
+}
+
+/*** Hero ***/
+
+.project-detail-hero {
+	padding: 94px 0 80px;
+}
+
+.project-detail-hero article {
+	grid-column: 3 / span 8;
+	margin: 0 auto;
+	max-width: max-content;
+}
+
+.project-detail-hero article p {
+	margin: var(--spacing-xxsmall) 0 0;
+	text-transform: uppercase;
+}
+
+/*** Full Width Media ***/
+
+.full-width-media .image-container {
+	grid-column: 2 / span 10;
+}
+
+.full-width-media .image-container img {
+	height: 100%;
+	object-fit: contain;
+	width: 100%;
+}
+
+/*** Two Column Media ***/
+
+.two-column-media .image-container {
+	grid-column: span 6;
+	padding: 0 var(--spacing-xsmall);
+}
+
+.two-column-media .image-container img {
+	height: 100%;
+	object-fit: contain;
+	width: 100%;
+}
+
+.two-column-media.medium .image-container {
+	height: 600px;
+}
+
+.two-column-media.medium .image-container:first-of-type,
+.two-column-media.small .image-container:first-of-type {
+	grid-column: 2 / span 5;
+}
+
+.two-column-media.medium .image-container:last-of-type,
+.two-column-media.small .image-container:last-of-type {
+	grid-column: 7 / span 5;
+}
+
+.two-column-media.small .image-container {
+	height: 500px;
+	padding: 0 var(--spacing-large);
+}
+
+.two-column-media.medium .image-container:first-of-type img,
+.two-column-media.small .image-container:first-of-type img {
+	object-position: right;
+}
+
+.two-column-media.medium .image-container:last-of-type img,
+.two-column-media.small .image-container:last-of-type img {
+	object-position: left;
+}
+
+/*** Text Content ***/
+
+.text-content article {
+	grid-column: 3 / span 8;
+}
+
+.text-content article h2 {
+	margin: 0 0 var(--spacing-small);
+}
+
+.text-content p,
+.text-content ul,
+.text-content ol {
+	margin: 0 0 var(--spacing-small);
+}
+
+.text-content article > :last-child {
+	margin-bottom: 0;
+}
+
+.text-content ol {
+	list-style: decimal;
+	padding: 0 0 0 var(--spacing-large);
+}
+
+/*** Project Link ***/
+
+.project-link .btn {
+	grid-column: 3 / span 8;
+}
+
+/********************************************************************************************************************************************************************************************************/
+
 /*MQ MAX-WIDTH 1778*/
 
 /********************************************************************************************************************************************************************************************************/

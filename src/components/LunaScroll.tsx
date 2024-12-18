@@ -41,18 +41,19 @@ export const useLunaScroll = () => {
 
 interface LunaScrollProps {
 	tag?: keyof JSX.IntrinsicElements;
-	children: React.ReactNode;
+	className?: string;
+	children?: React.ReactNode;
 	animation?: string;
 };
 
-export const LunaScroll: React.FC<LunaScrollProps> = ({ tag = 'div', children, animation = '' })  => {
+export const LunaScroll: React.FC<LunaScrollProps> = ({ tag = 'div', className, children, animation = '' })  => {
 	const { ref, isInViewport } = useLunaScroll();
 
 	return React.createElement(
 		tag,
 		{
 			ref: ref,
-			className: `${isInViewport ? 'animate' : ''}`,
+			className: `${isInViewport ? `${className} animate` : className}`,
 			'data-luna-scroll': animation
 		},
 		children
