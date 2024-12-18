@@ -98,14 +98,14 @@ Version: 1.0.0
 .expense-calendar {
 	color: var(--seaweed);
 	font: 1rem var(--body-font);
+	width: 100vw;
 }
 
 body:has(.expense-calendar) {
 	position: relative;
 }
 
-body:has(.expense-form-popup.active, .description.active),
-body:has(.expense-form-popup.active, .description.active) .calendar-body {
+body:has(.expense-form-popup.active, .description.active) {
 	overflow: hidden;
 }
 
@@ -825,6 +825,10 @@ input::placeholder {
 		padding: 0 var(--container-padding);
 		position: relative;
 		width: calc(100% + (2 * var(--container-padding)));
+	}
+
+	body:has(.expense-form-popup.active, .description.active) .calendar-body {
+		overflow: hidden;
 	}
 
 	.calendar-body .day-header,
