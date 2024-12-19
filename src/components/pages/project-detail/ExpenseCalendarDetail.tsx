@@ -15,6 +15,11 @@ import mockupMobileExpense from '../../../assets/images/expense-calendar/mobile-
 const ExpenseCalendarDetail = () => {
 	return (
 		<>
+			<Link to="/projects" className="btn back">
+				<span className="accessibility">Back to all projects</span>
+				<SVG name="arrow-right" />
+			</Link>
+
 			<Hero
 				title="Expense Calendar"
 				date="November 2024"
@@ -26,8 +31,9 @@ const ExpenseCalendarDetail = () => {
 			/>
 
 			<TextContent title="Overview">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>As someone who didn't really learn <em>anything</em> about finance until I reached my early adulthood, I've kind of developed a method of tracking my finances in a more visual way. I was mainly doing this in spreadsheets, styling cells to make it look like a calendar so that I knew exactly when my bills were going to hit and be prepared for them.</p>
+				<span className="eyebrow">Objective</span>
+
 			</TextContent>
 
 			<TwoColumnMedia

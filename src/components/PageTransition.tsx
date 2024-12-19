@@ -7,13 +7,15 @@ const PageTransition = () => {
 	const [render, setRender] = useState<boolean>(false);
 
 	useEffect(() => {
-		if ( navigation.state === 'loading' ) {
+		// show transition for bnoth loading and submitting states
+		if ( navigation.state !== 'idle' ) {
 			setRender(true);
 			setIsAnimating(true);
 
 			// scroll to top when navigation starts
 			window.scrollTo({
-				top: 0
+				top: 0,
+				behavior: 'smooth'
 			});
 		} else {
 			// keep showing animation for a brief moment after navigatino completes
@@ -28,7 +30,7 @@ const PageTransition = () => {
 	if ( !render ) return null;
 
 	return (
-		<div className={`page-transition ${isAnimating ? 'active' : ''}`}>
+		<div className={`page-transition ${isAnimating ? 'active' : ''}`} role="progressbar" aria-busy={isAnimating}>
 		</div>
 	);
 }

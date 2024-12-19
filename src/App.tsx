@@ -51,16 +51,20 @@ const router = createBrowserRouter([
 				path: 'projects',
 				element: <Projects />,
 				loader: createLoader(),
+				id: 'projects',
+				// shouldRevalidate: () => true,
 				children: [
 					{
 						path: 'expense-calendar',
 						element: <ExpenseCalendarDetail />,
-						loader: createLoader()
+						loader: createLoader(),
+						id: 'expense-calendar'
 					},
 					{
 						path: 'demo/expense-calendar',
 						element: <ExpenseCalendar />,
-						loader: createLoader()
+						loader: createLoader(),
+						id: 'demo-expense-calendar'
 					}
 				]
 			}

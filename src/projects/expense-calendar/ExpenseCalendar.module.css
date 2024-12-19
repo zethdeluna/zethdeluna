@@ -48,7 +48,7 @@ Version: 1.0.0
     src: url(./fonts/ReadexPro-Bold.woff) format('woff');
 }
 
-:root {
+.expense-calendar {
     --white: #FFFFFF;
     --black: #000000;
     --cream: #FDF9F2;

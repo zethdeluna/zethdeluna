@@ -21,12 +21,92 @@ Version: 1.0
 
 /***************************************************************************************************************************************************************************************/
 
-@font-face {
+/* @font-face {
 	font-display: swap;
 	font-family: 'Greenhouse';
 	font-style: normal;
 	font-weight: 400;
 	src: url('./assets/fonts/Greenhouse-Regular.woff') format('woff');
+} */
+
+@font-face {
+	font-display: swap;
+	font-family: 'Satoshi';
+	font-style: normal;
+	font-weight: 300;
+	src: url('./assets/fonts/Satoshi-Light.woff2') format('woff2');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Satoshi';
+	font-style: italic;
+	font-weight: 300;
+	src: url('./assets/fonts/Satoshi-LightItalic.woff2') format('woff2');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Satoshi';
+	font-style: normal;
+	font-weight: 400;
+	src: url('./assets/fonts/Satoshi-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Satoshi';
+	font-style: italic;
+	font-weight: 400;
+	src: url('./assets/fonts/Satoshi-Italic.woff2') format('woff2');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Satoshi';
+	font-style: normal;
+	font-weight: 500;
+	src: url('./assets/fonts/Satoshi-Medium.woff2') format('woff2');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Satoshi';
+	font-style: italic;
+	font-weight: 500;
+	src: url('./assets/fonts/Satoshi-MediumItalic.woff2') format('woff2');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Satoshi';
+	font-style: normal;
+	font-weight: 700;
+	src: url('./assets/fonts/Satoshi-Bold.woff2') format('woff2');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Satoshi';
+	font-style: italic;
+	font-weight: 700;
+	src: url('./assets/fonts/Satoshi-BoldItalic.woff2') format('woff2');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Satoshi';
+	font-style: normal;
+	font-weight: 900;
+	src: url('./assets/fonts/Satoshi-Black.woff2') format('woff2');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Satoshi';
+	font-style: italic;
+	font-weight: 900;
+	src: url('./assets/fonts/Satoshi-BlackItalic.woff2') format('woff2');
 }
 
 @font-face {
@@ -45,7 +125,7 @@ Version: 1.0
 	--dodger: #005A9C;
 	--mpls: #63A9F6;
 	--heat: #98002E;
-	--body-font: 'Greenhouse', Helvetica, sans-serif;
+	--body-font: 'Satoshi', Helvetica, sans-serif;
 	--heading-font: 'Lastik', Times, serif;
 	--container-width: calc(1280 / 1440 * 100vw);
 	--container-max-width: 1600px;
@@ -79,6 +159,7 @@ body {
 	background: var(--cream);
 	color: var(--black-mamba);
 	font: 1rem var(--body-font);
+	font-weight: 400;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 }
@@ -165,6 +246,7 @@ ul,
 ol {
 	font-family: var(--body-font);
 	font-size: calc(20rem / 16);
+	letter-spacing: 0.2px;
 	line-height: calc(24 / 20);
 	margin: 0;
 }
@@ -205,7 +287,7 @@ button {
 	grid-template-columns: var(--grid);
 }
 
-/***Text Modifiers***/
+/*** Text Modifiers ***/
 
 p.small,
 ul.small,
@@ -216,12 +298,14 @@ ol.small,
 }
 
 .eyebrow {
+	display: block;
 	font-family: var(--body-font);
+	font-weight: 500;
 	letter-spacing: 1.6px;
 	text-transform: uppercase;
 }
 
-/***Buttons***/
+/*** Buttons ***/
 
 a:focus,
 button:focus {
@@ -234,7 +318,7 @@ button:focus-visible {
 	box-shadow: inset 0px 0px 0px 2px var(--gold);
 }
 
-/*Arrow Button*/
+/* Arrow Button */
 
 .btn.arrow-btn {
 	align-items: center;
@@ -264,7 +348,19 @@ button:focus-visible {
 	transform: translateX(var(--spacing-xsmall));
 }
 
-/*Back Arrow Button*/
+/* Back Arrow Button */
+
+.btn.back .arrow-right {
+	height: auto;
+	position: relative;
+	transform: scaleX(-1);
+	transition: transform 0.25s ease;
+	width: 48px;
+}
+
+.btn.back:hover .arrow-right {
+	transform: scaleX(-1) translate3d(5px, 0, 0);
+}
 
 .btn.arrow-btn.back.heading-2 .arrow-right {
 	margin-right: var(--spacing-medium);
@@ -1558,7 +1654,7 @@ footer .copyright {
 
 /********************************************************************************************************************************************************************************************************/
 
-/*PROJECTS DETAIL STYLES*/
+/* PROJECTS DETAIL STYLES */
 
 /********************************************************************************************************************************************************************************************************/
 
@@ -1568,6 +1664,13 @@ footer .copyright {
 
 .project-detail-hero + .project-module {
 	margin: 0;
+}
+
+.projects-page .btn.back {
+	left: var(--spacing-large);
+	position: fixed;
+	top: var(--container-outer-padding);
+	z-index: 1;
 }
 
 /*** Hero ***/
@@ -1583,6 +1686,8 @@ footer .copyright {
 }
 
 .project-detail-hero article p {
+	font-weight: 500;
+	letter-spacing: 0.4px;
 	margin: var(--spacing-xxsmall) 0 0;
 	text-transform: uppercase;
 }
@@ -1655,6 +1760,14 @@ footer .copyright {
 .text-content ul,
 .text-content ol {
 	margin: 0 0 var(--spacing-small);
+}
+
+.text-content .eyebrow {
+	margin: 0 0 var(--spacing-xsmall);
+}
+
+.text-content p + .eyebrow {
+	margin-top: var(--spacing-large);
 }
 
 .text-content article > :last-child {
