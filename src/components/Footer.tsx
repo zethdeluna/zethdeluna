@@ -23,7 +23,7 @@ const Footer = () => {
 					</span>
 					by !
 				</h2>
-				<span className="mega">- Zeth</span>
+				<span className="mega">-Zeth</span>
 
 			</div>
 
