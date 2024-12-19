@@ -52,7 +52,7 @@ const router = createBrowserRouter([
 				element: <Projects />,
 				loader: createLoader(),
 				id: 'projects',
-				// shouldRevalidate: () => true,
+				shouldRevalidate: () => true,
 				children: [
 					{
 						path: 'expense-calendar',
