@@ -8,10 +8,5 @@ export default defineConfig({
 	react(),
 	svgr()
 ],
-  base: './',
-//   css: {
-// 	modules: {
-// 		generateScopedName: '[local]'
-// 	}
-//   }
+  base: '/',
 })
