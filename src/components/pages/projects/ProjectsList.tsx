@@ -1,14 +1,41 @@
+import SVG from "../../SVG";
+import { LunaScroll } from "../../LunaScroll";
 import ProjectCard from "./ProjectCard";
-import headshot from '../../../assets/images/me.jpg';
+import thumbnailExpenseCalendar from '../../../assets/images/expense-calendar/thumbnail.png';
 
 const ProjectsList = () => {
 
 	const projects = [
 		{
 			'name': 'Expense Calendar',
+			'date': 'November 2024',
 			'url': 'expense-calendar',
-			'imageURL': headshot
-		}
+			'imageURL': thumbnailExpenseCalendar
+		},
+		{
+			'name': 'Expense Calendar',
+			'date': 'November 2024',
+			'url': 'expense-calendar',
+			'imageURL': thumbnailExpenseCalendar
+		},
+		{
+			'name': 'Expense Calendar',
+			'date': 'November 2024',
+			'url': 'expense-calendar',
+			'imageURL': thumbnailExpenseCalendar
+		},
+		{
+			'name': 'Expense Calendar',
+			'date': 'November 2024',
+			'url': 'expense-calendar',
+			'imageURL': thumbnailExpenseCalendar
+		},
+		{
+			'name': 'Expense Calendar',
+			'date': 'November 2024',
+			'url': 'expense-calendar',
+			'imageURL': thumbnailExpenseCalendar
+		},
 	];
 
 	return (
@@ -17,14 +44,30 @@ const ProjectsList = () => {
 
 				<ul className="posts grid">
 					{
-						projects.map((project) => (
-							<ProjectCard
-								key={project.url}
-								url={project.url}
-								name={project.name}
-								imageURL={project.imageURL}
-							/>
-						))
+						projects.map((project, index) => {
+
+							const stars_card = 
+								<li key={`stars-card-${index}`} className="stars-card">
+									<LunaScroll animation="bounce-in"><SVG name="star" /></LunaScroll>
+									<LunaScroll animation="bounce-in"><SVG name="star" /></LunaScroll>
+									<LunaScroll animation="bounce-in"><SVG name="star" /></LunaScroll>
+									<LunaScroll animation="bounce-in"><SVG name="star" /></LunaScroll>
+								</li>
+							;
+							
+							return (
+								<>
+									{ index === 3 && stars_card}
+									<ProjectCard
+										key={project.url}
+										url={project.url}
+										name={project.name}
+										date={project.date}
+										imageURL={project.imageURL}
+									/>
+								</>
+							);
+						})
 					}
 				</ul>
 

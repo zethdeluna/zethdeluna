@@ -305,6 +305,11 @@ ol.small,
 	text-transform: uppercase;
 }
 
+.eyebrow.small {
+	font-size: calc(12rem / 16);
+	letter-spacing: 1px;
+}
+
 /*** Buttons ***/
 
 a:focus,
@@ -634,6 +639,17 @@ footer .outro > span {
 	display: inline;
     grid-column: 9 / span 3;
 	position: relative;
+}
+
+footer .outro > span:before {
+	color: var(--black-mamba);
+	content: '-';
+	display: block;
+	font: inherit;
+	left: -56px;
+	position: absolute;
+	top: 50%;
+	transform: translate3d(0, -50%, 0);
 }
 
 footer .outro .plumeria-container {
@@ -1641,7 +1657,34 @@ footer .copyright {
 	grid-column: span 4;
 }
 
-.projects .project-card .image-container {
+.projects .project-card {
+	color: var(--black-mamba);
+}
+
+.projects li:nth-child(4n + 1 of :has(.project-card)) .project-card:hover {
+	color: var(--dodger);
+}
+
+.projects li:nth-child(4n + 2 of :has(.project-card)) .project-card:hover {
+	color: var(--heat);
+}
+
+.projects li:nth-child(4n + 3 of :has(.project-card)) .project-card:hover {
+	color: var(--laker);
+}
+
+.projects li:nth-child(4n + 4 of :has(.project-card)) .project-card:hover h3,
+.projects li:nth-child(4n + 4 of :has(.project-card)) .project-card:hover .eyebrow {
+	opacity: 0.7;
+}
+
+.projects .project-card h3,
+.projects .project-card .eyebrow {
+	transition: opacity 0.25s ease;
+}
+
+.projects .project-card .image-container,
+.projects .stars-card {
 	aspect-ratio: 400 / 306;
 	border-radius: 8px;
 	height: auto;
@@ -1650,10 +1693,150 @@ footer .copyright {
 	width: 100%;
 }
 
+.projects .project-card .image-container:before {
+	background: transparent;
+	border-radius: 8px;
+	content: '';
+	height: 100%;
+	left: 0;
+	opacity: 0.7;
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	transition: all 0.25s ease;
+	width: 100%;
+	z-index: 1;
+}
+
+.projects li:nth-child(4n + 1 of :has(.project-card)) .image-container:before {
+	box-shadow: inset 0px 0px 0px 2px var(--dodger);
+}
+
+.projects li:nth-child(4n + 2 of :has(.project-card)) .image-container:before {
+	box-shadow: inset 0px 0px 0px 2px var(--heat);
+}
+
+.projects li:nth-child(4n + 3 of :has(.project-card)) .image-container:before {
+	box-shadow: inset 0px 0px 0px 2px var(--laker);
+}
+
+.projects li:nth-child(4n + 4 of :has(.project-card)) .image-container:before {
+	box-shadow: inset 0px 0px 0px 2px var(--black-mamba);
+}
+
+.projects li:nth-child(4n + 1 of :has(.project-card)) .project-card:hover .image-container:before {
+	background: var(--dodger);
+	box-shadow: inset 0px 0px 0px 0px var(--dodger);
+}
+
+.projects li:nth-child(4n + 2 of :has(.project-card)) .project-card:hover .image-container:before {
+	background: var(--heat);
+	box-shadow: inset 0px 0px 0px 0px var(--heat);
+}
+
+.projects li:nth-child(4n + 3 of :has(.project-card)) .project-card:hover .image-container:before {
+	background: var(--laker);
+	box-shadow: inset 0px 0px 0px 0px var(--laker);
+}
+
+.projects li:nth-child(4n + 4 of :has(.project-card)) .project-card:hover .image-container:before {
+	background: var(--black-mamba);
+	box-shadow: inset 0px 0px 0px 0px var(--black-mamba);
+}
+
 .projects .project-card .image-container img {
 	height: 100%;
 	object-fit: cover;
 	width: 100%;
+}
+
+.projects .project-card .image-container span {
+	left: 50%;
+	max-width: calc(100% - 64px);
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	transform: translate3d(-50%, -50%, 0) scale(0.8);
+	transition: all 0.25s var(--bounce);
+	width: 80px;
+	z-index: 1;
+}
+
+.projects .project-card .image-container span svg {
+	height: auto;
+	width: 100%;
+}
+
+.projects .project-card .image-container span svg path {
+	fill: var(--cream);
+}
+
+.projects .project-card:hover .image-container span {
+	opacity: 1;
+	transform: translate3d(-50%, -50%, 0) scale(1);
+}
+
+.projects .project-card article {
+	margin: var(--spacing-xsmall) 0 0;
+}
+
+.projects .project-card article .eyebrow {
+	margin: var(--spacing-xxsmall) 0 0;
+}
+
+.projects .stars-card [data-luna-scroll] {
+	aspect-ratio: 62 / 59;
+    height: auto;
+    position: absolute;
+    transform-origin: center;
+    width: 62px;
+}
+
+.projects .stars-card [data-luna-scroll]:nth-of-type(1) {
+    left: calc(64 / 400 * 100%);
+    top: calc(12 / 306 * 100%);
+    transform: scale(0.8) rotate(-16deg);
+}
+
+.projects .stars-card [data-luna-scroll].animate:nth-of-type(1) {
+	transform: scale(1) rotate(-16deg);
+}
+
+.projects .stars-card [data-luna-scroll]:nth-of-type(2) {
+    right: calc(140 / 400 * 100%);
+    top: calc(80 / 306 * 100%);
+    transform: scale(0.8) rotate(8deg);
+}
+
+.projects .stars-card [data-luna-scroll].animate:nth-of-type(2) {
+	transform: scale(1) rotate(8deg);
+}
+
+.projects .stars-card [data-luna-scroll]:nth-of-type(3) {
+    left: calc(130 / 400 * 100%);
+    top: calc(160 / 306 * 100%);
+    transform: scale(0.8) rotate(-8deg);
+}
+
+.projects .stars-card [data-luna-scroll].animate:nth-of-type(3) {
+	transform: scale(1) rotate(-8deg);
+}
+
+.projects .stars-card [data-luna-scroll]:nth-of-type(4) {
+    bottom: calc(12 / 306 * 100%);
+    right: calc(64 / 400 * 100%);
+    transform: scale(0.8) rotate(16deg);
+}
+
+.projects .stars-card [data-luna-scroll].animate:nth-of-type(4) {
+	transform: scale(1) rotate(16deg);
+}
+
+.projects .stars-card .star-smiley:hover #Star {
+    animation: starShake 0.25s var(--bounce);
+    transform-origin: center;
 }
 
 /********************************************************************************************************************************************************************************************************/

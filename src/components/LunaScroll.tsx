@@ -46,7 +46,7 @@ interface LunaScrollProps {
 	animation?: string;
 };
 
-export const LunaScroll: React.FC<LunaScrollProps> = ({ tag = 'div', className, children, animation = '' })  => {
+export const LunaScroll: React.FC<LunaScrollProps> = ({ tag = 'div', className = '', children, animation = '' })  => {
 	const { ref, isInViewport } = useLunaScroll();
 
 	return React.createElement(

@@ -138,8 +138,6 @@ const CalendarDays: React.FC<CalendarDayProps> = ({
 			top_position = `calc(50% + ${Math.abs(topOffset)}px)`;
 		}
 
-		console.log(top_position);
-
 		return { left_position, top_position };
 
 	}, []);

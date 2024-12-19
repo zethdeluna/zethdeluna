@@ -35,8 +35,8 @@ const ExpenseCalendarDetail = () => {
 				<p>I've kind of developed a method of tracking my finances in a more visual way. I was mainly doing this in spreadsheets, styling cells to make it look like a calendar so that I knew exactly when my bills were going to hit and to be prepared for them. This was my inspiration for creating my Expense Calendar web app.</p>
 
 				<span className="eyebrow">Objective</span>
-				<p>So, the main reason I ventured into this project was because I wanted to learn more about building sites with React, more specifically React TypeScript. I don't work with any JS frameworks at my day job, so I saw this as a great opportunity to jump into the deep (or medium) end of the React pool.</p>
-				<p>Because the dates and days change every month, I had to constantly rewrite my spreadsheet calendar and move my expenses. I wanted to make something that would automatically fill in my expenses each month. And I know, I probably could've just used something like Google Calendar to set this up, but why not make this my own?</p>
+				<p>The main reason I ventured into this project was because I wanted to learn more about building sites with React, more specifically React TypeScript. I don't work with any JS frameworks at my day job, so I saw this as a great opportunity to jump into the deep (or medium) end of the React pool.</p>
+				<p>Because the placement of dates and days change every month, I had to constantly rewrite my spreadsheet calendar and move my expenses. I wanted to make something that would automatically fill in my expenses each month. And I know, I probably could've just used something like Google Calendar to set this up, but why not make this my own?</p>
 
 				<span className="eyebrow">Technologies</span>
 				<p>This project was built with <strong>Vite</strong>, written in <strong>React TypeScript</strong>, and styled with <strong>CSS</strong>. We'll get more into the nitty gritty later.</p>
@@ -59,7 +59,7 @@ const ExpenseCalendarDetail = () => {
 				<span className="eyebrow">Design</span>
 				<p>Having spent the last 3.5 years (as of this writing) in the presence of an <em>amazing</em> team of designers (shoutout Studio Simpatico), I've humbly picked up a decent eye for UI/UX design. I wanted to design something clean, simple, and easy on the eyes. For starters, I decided to use soft colors, give buttons and popups nice rounded edges, and use a clean sans-serif font—Readex Pro by Google Fonts.</p>
 				<p>I tried to make this app as intuitive as possible (I mean, how complex can a calendar be, honestly). Clicking on a day will open up a popup, in which you can enter the new item's information. Then, just click the "Add" button, or hit the enter key, and you're done!</p>
-				<p>You can also view existing items by clicking on them. Income will be colored a nice calming green—I call it "bokchoy green"—and expenses will be colored a mildly alarming red—"strawberry milk". You'll see its details, as well as an option to delete the item.</p>
+				<p>You can also view existing items by clicking on them. Income will be colored a nice calming green—I call it "bok choy green"—and expenses will be colored a mildly alarming red—"strawberry milk". You'll see its details, as well as an option to delete the item.</p>
 			</TextContent>
 
 			<TwoColumnMedia
