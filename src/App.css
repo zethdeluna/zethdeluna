@@ -189,55 +189,55 @@ h6,
 
 .supermega {
 	font-size: calc(190rem / 16);
-	letter-spacing: -9.5px;
+	letter-spacing: -3.2px;
 	line-height: calc(228 / 190);
 }
 
 .mega {
 	font-size: calc(120rem / 16);
-	letter-spacing: -6px;
+	letter-spacing: -2px;
 	line-height: calc(144 / 120);
 }
 
 h1,
 .heading-1 {
 	font-size: calc(80rem / 16);
-	letter-spacing: -4px;
+	letter-spacing: -1.4px;
 	line-height: calc(96 / 80);
 }
 
 h2,
 .heading-2 {
 	font-size: calc(60rem / 16);
-	letter-spacing: -3px;
+	letter-spacing: -1px;
 	line-height: calc(72 / 60);
 }
 
 h3,
 .heading-3 {
 	font-size: calc(48rem / 16);
-	letter-spacing: -2.4px;
+	letter-spacing: -0.8px;
 	line-height: calc(54 / 48);
 }
 
 h4,
 .heading-4 {
 	font-size: calc(40rem / 16);
-	letter-spacing: -2px;
+	letter-spacing: -0.7px;
 	line-height: calc(48 / 40);
 }
 
 h5,
 .heading-5 {
 	font-size: calc(32rem / 16);
-	letter-spacing: -1.6px;
+	letter-spacing: -0.5px;
 	line-height: calc(38 / 32);
 }
 
 h6,
 .heading-6 {
 	font-size: calc(24rem / 16);
-	letter-spacing: -1.2px;
+	letter-spacing: -0.4px;
 	line-height: calc(28 / 24);
 }
 
@@ -301,7 +301,7 @@ ol.small,
 	display: block;
 	font-family: var(--body-font);
 	font-weight: 500;
-	letter-spacing: 1.6px;
+	letter-spacing: 1.4px;
 	text-transform: uppercase;
 }
 
@@ -866,6 +866,10 @@ footer .copyright {
 
 .intro .btn.arrow-btn {
     grid-column: 8 / span 4;
+	left: calc(-1 * var(--gap));
+	max-width: max-content;
+	position: relative;
+	width: calc(100% + var(--gap));
 }
 
 /*** Work ***/
@@ -1666,6 +1670,10 @@ footer .copyright {
 	margin: 0;
 }
 
+.project-module.text-content + .project-module.text-content {
+	margin: 80px 0 0;
+}
+
 .projects-page .btn.back {
 	left: var(--spacing-large);
 	position: fixed;
@@ -1680,7 +1688,7 @@ footer .copyright {
 }
 
 .project-detail-hero article {
-	grid-column: 3 / span 8;
+	grid-column: 1 / -1;
 	margin: 0 auto;
 	max-width: max-content;
 }
@@ -1767,7 +1775,7 @@ footer .copyright {
 }
 
 .text-content p + .eyebrow {
-	margin-top: var(--spacing-large);
+	margin-top: var(--spacing-medium);
 }
 
 .text-content article > :last-child {
@@ -1783,6 +1791,13 @@ footer .copyright {
 
 .project-link .btn {
 	grid-column: 3 / span 8;
+	margin: 0 auto;
+	max-width: max-content;
+}
+
+.project-link .btn.arrow-btn.heading-2 .arrow-right {
+	margin: var(--spacing-xxsmall) 0 0 var(--spacing-medium);
+	right: unset;
 }
 
 /********************************************************************************************************************************************************************************************************/
@@ -2212,6 +2227,11 @@ footer .copyright {
     .intro article h2 {
         margin-bottom: 12px;
     }
+
+	.intro .btn.arrow-btn {
+		left: unset;
+		width: 100%;
+	}
 
     /* Work */
 
