@@ -31,7 +31,7 @@ const ExpenseCalendarDetail = () => {
 			/>
 
 			<TextContent title="The Overview">
-				<p>As someone who wasn't expose to <em>anything</em> about finance until I reached my early adulthood, I had to learn some basic things on my own — like how to budget, open a savings account, and track expenses. One good thing about learning late is that I've got the internet's latest info on the do's and don't's of finance, and I can really pick & choose what works best for me.</p>
+				<p>As someone who wasn't exposed to <em>anything</em> about finance until I reached my early adulthood, I had to learn some basic things on my own — like how to budget, open a savings account, and track expenses. One good thing about learning late is that I've got the internet's latest info on the do's and don't's of finance, and I can really pick & choose what works best for me.</p>
 				<p>I've kind of developed a method of tracking my finances in a more visual way. I was mainly doing this in spreadsheets, styling cells to make it look like a calendar so that I knew exactly when my bills were going to hit and to be prepared for them. This was my inspiration for creating my Expense Calendar web app.</p>
 
 				<span className="eyebrow">Objective</span>
