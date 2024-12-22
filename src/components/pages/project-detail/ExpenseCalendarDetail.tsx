@@ -39,7 +39,7 @@ const ExpenseCalendarDetail = () => {
 				<p>Because the placement of dates and days change every month, I had to constantly rewrite my spreadsheet calendar and move my expenses. I wanted to make something that would automatically fill in my expenses each month. And I know, I probably could've just used something like Google Calendar to set this up, but why not make this my own?</p>
 
 				<span className="eyebrow">Technologies</span>
-				<p>This project was built with <strong>Vite</strong>, written in <strong>React TypeScript</strong>, and styled with <strong>CSS</strong>. We'll get more into the nitty gritty later.</p>
+				<p>This project was built with <strong>Vite</strong>, written in <strong>React TypeScript</strong>, and styled with <strong>CSS</strong>. A solid foundation in HTML and Vanilla JS also came in handy during this project. We'll get more into the nitty gritty later.</p>
 
 			</TextContent>
 
@@ -72,7 +72,9 @@ const ExpenseCalendarDetail = () => {
 
 			<TextContent>
 				<span className="eyebrow">Development</span>
-				<p>This was my first go-around at using React to build an interactive UX, so it was truly a learning experience for me. I've only heard stories about React hooks, components, and state management (?), but with this project I've turned myth into reality.</p>
+				<p>This was my first go-around at using React to build an interactive UX, so it was truly a learning experience for me. I've heard stories about React hooks, components, and state management, but with this project I was able to get some hands-on experience on how these concepts work "in real life".</p>
+				<p>The useState and useEffect hooks were my main tools of choice for this project, with a sprinkle of useCallback and useRef. The main use cases for the useState hook were to store the data entered into the calendar and to handle some of the logic that controlled the state of the active popups/forms. useEffect was useful for handling existing data, i.e. parsing and displaying the calendar data stored in localStorage, while useCallback was the driver behind the user's ability to add new information to the calendar.</p>
+				<p>If you'd like to take a more detailed look at the implementation, feel free to check out the code <a href="https://github.com/zethdeluna/zethdeluna/tree/main/src/projects/expense-calendar" target="_blank">here</a>!</p>
 			</TextContent>
 
 			<TwoColumnMedia
@@ -85,13 +87,9 @@ const ExpenseCalendarDetail = () => {
 			/>
 
 			<TextContent title="The Retro">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<ol>
-					<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
-					<li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-					<li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</li>
-				</ol>
+				<p>I believe that no matter how good you are at your craft (or anything, really), there will always be some room left for improvement. I know, I said that this was my first go-around at building a full-on React app, but there were some things I could've done better from the start.</p>
+				<p>I've spent the last few years working under amazing leadership and fellow developers, and we've come together as one well-oiled machine that outputs ultra-neat code and a super organized directory system *chef's kiss. That, unfortunately, didn't exactly carry over when I was getting this project going. My first iteration of this project was <em>a mess</em>, and going back to clean things up did take quite a while.</p>
+				<p>Another point I should focus on for my next project would be to build with more clean & efficient functions, and more purposeful state management. I feel like now, after this project has put me through the wringer, I have a much better understanding of React component structures/hierarchy, state management between components, and the general uses of React hooks like useState, useCallback, useEffect, and useRef. I'm hopeful that I can carry my newfound knowledge to the next project, and am excited to continue to learn more!</p>
 			</TextContent>
 
 			<TwoColumnMedia
@@ -103,12 +101,23 @@ const ExpenseCalendarDetail = () => {
 				size="small"
 			/>
 
-			<section className="project-module project-link">
-				<div className="container grid">
+			<TextContent>
+				<p>Thanks so much for stopping by and making it to the end! Please do check out a live demo of this project (link below) and feel free to browse through the repository if interested.</p>
 
-					<Link to="/projects/demo/expense-calendar" className="btn arrow-btn heading-2">
-						Check out a demo <SVG name="arrow-right" />
+			</TextContent>
+
+			<section className="project-links">
+				<div className="container">
+
+					<Link to="/projects/demo/expense-calendar" className="btn heading-2">
+						<span>Demo</span>
+						<SVG name="star" />
 					</Link>
+
+					<a className="btn heading-2" href="https://github.com/zethdeluna/zethdeluna/tree/main/src/projects/expense-calendar" target="_blank">
+						<span>Repo</span>
+						<SVG name="star" />
+					</a>
 
 				</div>
 			</section>
