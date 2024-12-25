@@ -1,13 +1,15 @@
+import { Link } from "react-router-dom";
 import { LunaScroll } from '../../LunaScroll';
 import SVG from '../../SVG';
 
 interface WorkCardProps {
-	svg?: string;
 	title?: string;
-	link?: string;
+	url: string;
+	svg?: string;
+	image?: string;
 };
 
-const WorkCard: React.FC<WorkCardProps> = ({ svg, title, link }) => {
+const WorkCard: React.FC<WorkCardProps> = ({ title, url, svg, image }) => {
 
 	return (
 		<li>
@@ -15,8 +17,8 @@ const WorkCard: React.FC<WorkCardProps> = ({ svg, title, link }) => {
 				{svg === 'sun' && <SVG name="sun" />}
 				{svg === 'star' && <SVG name="star" />}
 			</LunaScroll>
-			<a className="card" href={link ? link : '#'}>
-				<div className="image-container"></div>
+			<Link to={url} className="card">
+				<div className="image-container">{image && <img src={image} alt={`${title} preview image`} />}</div>
 				<div className="metadata">
 					{title !== '' && <h3 className="heading-5">{title}</h3>}
 				</div>
@@ -24,7 +26,7 @@ const WorkCard: React.FC<WorkCardProps> = ({ svg, title, link }) => {
 					Take a look
 					<SVG name="arrow-right" />
 				</div>
-			</a>
+			</Link>
 		</li>
 	);
 };
