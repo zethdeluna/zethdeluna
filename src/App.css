@@ -1160,7 +1160,7 @@ footer .copyright {
 /*** Hero ***/
 
 .about-hero {
-    padding: 120px 0 160px;
+    padding: 120px 0;
 }
 
 .about-hero h1 {
@@ -1240,6 +1240,7 @@ footer .copyright {
 
 .about-intro article {
     grid-column: 2 / span 5;
+	width: calc(100% + var(--gap));
 }
 
 .about-intro h2 {
@@ -1297,6 +1298,7 @@ footer .copyright {
     display: flex;
     grid-column: 8 / span 4;
     height: auto;
+	margin: 64px 0 0;
     overflow: hidden;
     position: relative;
     width: 100%;
@@ -2120,6 +2122,15 @@ footer .copyright {
 		bottom: calc(100 / 1200 * 100vw);
 	}
 
+	/*** About ***/
+
+	/* Favorite Things */
+
+	.favorite-things h2 {
+		font-size: calc(190 / 1400 * 100vw);
+		letter-spacing: calc(-3.2 / 1400 * 100vw);
+	}
+
 	/*** Projects Detail ***/
 
 	/* Two Column Media */
@@ -2148,7 +2159,8 @@ footer .copyright {
         --container-outer-padding: 40px;
     }
 
-    .supermega {
+    .supermega,
+	.favorite-things h2 {
         font-size: calc(140rem / 16);
         letter-spacing: -2.4px;
         line-height: calc(168 / 140);
@@ -2259,13 +2271,14 @@ footer .copyright {
     /* Hero */
 
     .about-hero {
-        padding: 100px 0 120px;
+        padding: 100px 0;
     }
 
     /* Intro */
 
     .about-intro article {
         grid-column: 1 / span 6;
+		width: 100%;
     }
 
     .about-intro .image-container {
@@ -2384,7 +2397,8 @@ footer .copyright {
 
 @media only screen and (max-width: 59.375em) {
 
-    .supermega {
+    .supermega,
+	.favorite-things h2 {
         font-size: calc(100rem / 16);
         letter-spacing: -1.6px;
         line-height: calc(120 / 100);
@@ -2629,9 +2643,12 @@ footer .copyright {
         text-align: center;
     }
 
+	.favorite-things h2 [data-luna-scroll]:has(.sun-smiley) {
+		left: -64px;
+	}
+
 	.favorite-things h2 [data-luna-scroll]:has(.plumeria) {
-		bottom: var(--spacing-xxsmall);
-		width: 48px;
+		display: none;
 	}
 
     .favorite-things .things {
