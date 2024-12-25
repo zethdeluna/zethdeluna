@@ -2,6 +2,7 @@ import SVG from "../../SVG";
 import { LunaScroll } from "../../LunaScroll";
 import ProjectCard from "./ProjectCard";
 import thumbnailExpenseCalendar from '../../../assets/images/expense-calendar/thumbnail.png';
+import thumbnailMyWebsite from '../../../assets/images/my-website/thumbnail.jpg';
 
 const ProjectsList = () => {
 
@@ -13,10 +14,10 @@ const ProjectsList = () => {
 			'imageURL': thumbnailExpenseCalendar
 		},
 		{
-			'name': 'Expense Calendar',
+			'name': 'My Website',
 			'date': 'November 2024',
-			'url': 'expense-calendar',
-			'imageURL': thumbnailExpenseCalendar
+			'url': 'my-website',
+			'imageURL': thumbnailMyWebsite
 		},
 		{
 			'name': 'Expense Calendar',

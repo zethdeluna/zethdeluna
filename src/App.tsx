@@ -9,6 +9,7 @@ import Projects from './pages/Projects';
 import ExpenseCalendar from './projects/expense-calendar/ExpenseCalendar';
 import PageTransition from './components/PageTransition';
 import ExpenseCalendarDetail from './components/pages/project-detail/ExpenseCalendarDetail';
+import MyWebsiteDetail from './components/pages/project-detail/MyWebsiteDetail';
 
 const RootLayout = () => {
 	return (
@@ -65,6 +66,12 @@ const router = createBrowserRouter([
 						element: <ExpenseCalendar />,
 						loader: createLoader(),
 						id: 'demo-expense-calendar'
+					},
+					{
+						path: 'my-website',
+						element: <MyWebsiteDetail />,
+						loader: createLoader(),
+						id: 'my-website'
 					}
 				]
 			}
