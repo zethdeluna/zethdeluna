@@ -158,8 +158,12 @@ html {
 body {
 	background: var(--cream);
 	color: var(--black-mamba);
+	display: block;
 	font: 1rem var(--body-font);
 	font-weight: 400;
+	min-height: unset;
+	min-width: unset;
+	place-items: unset;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 }
