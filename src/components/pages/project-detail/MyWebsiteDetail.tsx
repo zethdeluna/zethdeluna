@@ -36,7 +36,7 @@ const MyWebsiteDetail = () => {
 				<p>As I said before, I wanted to make a completely custom website and have full control over the user's experience. Since I'm the only one creating & editing content, it didn't make sense to try to work this site into a content management system, like WordPress. This gave me much more freedom to do what I wanted and how I wanted it. I wanted to create an experience that was somewhat whimsical and fun, while also highlighting my skills.</p>
 
 				<span className="eyebrow">Technologies</span>
-				<p>This site was designed in <strong>Figma</strong>, built with <strong>Vite</strong>, written in <strong>React TypeScript</strong>, and styled with <strong>CSS</strong>. The main React hooks utilized are <strong>useState</strong>, <strong>useEffect</strong>, and <strong>useRef</strong>. One notable React library used is <strong>react-router-dom</strong>. A solid foundation in <strong>HTML</strong> and <strong>Vanilla JS</strong> also came in handy during this project. We'll dive into the details in a bit.</p>
+				<p>This site was designed in <strong>Figma</strong>, built with <strong>Vite</strong>, written in <strong>React TypeScript</strong>, and styled with <strong>CSS</strong>. The React hooks utilized are <strong>useState</strong>, <strong>useEffect</strong>, and <strong>useRef</strong>. One notable React library used is <strong>react-router-dom</strong>. A solid foundation in <strong>HTML</strong> and <strong>Vanilla JS</strong> also came in handy during this project. We'll dive into the details in a bit.</p>
 			</TextContent>
 
 			<TwoColumnMedia

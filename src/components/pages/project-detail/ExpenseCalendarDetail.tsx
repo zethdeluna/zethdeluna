@@ -39,7 +39,7 @@ const ExpenseCalendarDetail = () => {
 				<p>Because the placement of dates and days change every month, I had to constantly rewrite my spreadsheet calendar and move my expenses. I wanted to make something that would automatically fill in my expenses each month. And I know, I probably could've just used something like Google Calendar to set this up, but why not make this my own?</p>
 
 				<span className="eyebrow">Technologies</span>
-				<p>This project was built with <strong>Vite</strong>, written in <strong>React TypeScript</strong>, and styled with <strong>CSS</strong>. A solid foundation in <strong>HTML</strong> and <strong>Vanilla JS</strong> also came in handy during this project. We'll get more into the nitty gritty later.</p>
+				<p>This project was built with <strong>Vite</strong>, written in <strong>React TypeScript</strong>, and styled with <strong>CSS</strong>. The React hooks utilized are <strong>useState</strong>, <strong>useEffect</strong>, <strong>useCallback</strong>, and <strong>useRef</strong> A solid foundation in <strong>HTML</strong> and <strong>Vanilla JS</strong> also came in handy during this project. We'll get more into the nitty gritty later.</p>
 
 			</TextContent>
 
