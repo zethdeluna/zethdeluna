@@ -1910,13 +1910,26 @@ footer .copyright {
 
 /*** Full Width Media ***/
 
-.full-width-media .image-container {
+.full-width-media .media-container {
 	grid-column: 2 / span 10;
 }
 
-.full-width-media .image-container img {
+.full-width-media .media-container img {
 	height: 100%;
 	object-fit: contain;
+	width: 100%;
+}
+
+.full-width-media .media-container:has(video) {
+	border: 2px solid var(--black-mamba);
+	border-radius: 8px;
+	overflow: hidden;
+	position: relative;
+}
+
+.full-width-media .media-container video {
+	display: block;
+	height: auto;
 	width: 100%;
 }
 
@@ -1983,6 +1996,7 @@ footer .copyright {
 	font-weight: 500;
 	text-decoration: underline;
 	text-decoration-color: var(--mpls);
+	text-decoration-skip-ink: none;
 	text-decoration-thickness: 2px;
 	text-underline-offset: 4px;
 }
@@ -2006,6 +2020,17 @@ footer .copyright {
 .text-content ol {
 	list-style: decimal;
 	padding: 0 0 0 var(--spacing-large);
+}
+
+.text-content pre {
+	display: flex;
+	flex-direction: column;
+	font-size: calc(15rem / 16);
+	padding: 0 32px;
+}
+
+.text-content pre .indent {
+	margin-left: 32px;
 }
 
 /*** Project Link ***/

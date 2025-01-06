@@ -1,8 +1,9 @@
 import { LunaScroll } from "../../../LunaScroll";
 
 interface FullWidthMediaProps {
+	mediaType?: string;
 	src: string;
-	alt: string;
+	alt?: string;
 	animate?: boolean;
 }
 
@@ -11,11 +12,11 @@ interface ContainerProps {
 	animation?: string;
 }
 
-const FullWidthMedia: React.FC<FullWidthMediaProps> = ({ src, alt, animate = false }) => {
+const FullWidthMedia: React.FC<FullWidthMediaProps> = ({ mediaType = 'image', src, alt = '', animate = false }) => {
 
 	const Container = animate ? LunaScroll : ( 'div' as keyof JSX.IntrinsicElements );
 	const props: ContainerProps = {
-		className: 'image-container',
+		className: 'media-container',
 		...(animate && { animation: 'bounce-in' })
 	};
 
@@ -24,7 +25,11 @@ const FullWidthMedia: React.FC<FullWidthMediaProps> = ({ src, alt, animate = fal
 			<div className="container grid">
 
 				<Container {...props}>
-					<img src={src} alt={alt} />
+					{
+						mediaType === 'image'
+							? <img src={src} alt={alt} />
+							: <video autoPlay loop muted><source src={src} type="video/mp4"/>Your browser does not support the video tag.</video>
+					}
 				</Container>
 					
 
