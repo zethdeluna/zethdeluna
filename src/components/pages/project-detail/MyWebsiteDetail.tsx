@@ -19,7 +19,7 @@ const MyWebsiteDetail = () => {
 			</Link>
 
 			<Hero
-				title="zethdeluna.com"
+				title={<>zethdeluna<wbr/>.com</>}
 				date="November 2024"
 			/>
 

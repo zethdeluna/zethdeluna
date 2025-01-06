@@ -14,7 +14,7 @@ const ProjectsList = () => {
 			'imageURL': thumbnailExpenseCalendar
 		},
 		{
-			'name': 'My Website',
+			'name': 'zethdeluna.com',
 			'date': 'November 2024',
 			'url': 'my-website',
 			'imageURL': thumbnailMyWebsite

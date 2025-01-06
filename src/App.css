@@ -2778,9 +2778,14 @@ footer .copyright {
 		text-align: center;
 	}
 
+	.project-detail-hero article h1:has(wbr) {
+		line-height: calc(80 / 100);
+		margin-bottom: 30px;
+	}
+
 	/* Full Width Media */
 
-	.full-width-media .image-container {
+	.full-width-media .media-container {
 		grid-column: 1 / -1;
 		padding: 0 var(--spacing-xxsmall);
 	}
@@ -2837,6 +2842,13 @@ footer .copyright {
     .heading-2 {
         font-size: calc(44rem / 16);
     }
+
+	p,
+	ol,
+	ul {
+		font-size: calc(16rem / 16);
+		line-height: calc(26 / 16);
+	}
 
 	.btn.arrow-btn.heading-2 .arrow-right {
 		right: calc(-1 * var(--spacing-xsmall));
@@ -3113,6 +3125,12 @@ footer .copyright {
 
 	.project-module.text-content + .project-module.text-content {
 		margin: 64px 0 0;
+	}
+
+	/* Hero */
+
+	.project-detail-hero article h1:has(wbr) {
+		margin-bottom: 22px;
 	}
 
 	/* Two Column Media */
