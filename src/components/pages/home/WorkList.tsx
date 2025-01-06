@@ -1,5 +1,6 @@
 import WorkCard from "./WorkCard";
 import expenseCalendarThumbnail from '../../../assets/images/expense-calendar/thumbnail.png';
+import myWebsiteThumbnail from '../../../assets/images/my-website/thumbnail.jpg';
 
 const CARDS = [
 	{
@@ -9,22 +10,16 @@ const CARDS = [
 		'image': expenseCalendarThumbnail
 	},
 	{
-		'title': 'Project 2',
-		'url': '/',
+		'title': 'zethdeluna.com',
+		'url': '/projects/my-website',
 		'svg': 'sun',
-		'image': ''
-	},
-	{
-		'title': 'Project 3',
-		'url': '/',
-		'svg': 'star',
-		'image': ''
+		'image': myWebsiteThumbnail
 	},
 ];
 
 const WorkList = () => {
 	return (
-		<ul className="grid" data-count="odd">
+		<ul className="grid" data-count="even">
 			{
 				CARDS.map(card => {
 

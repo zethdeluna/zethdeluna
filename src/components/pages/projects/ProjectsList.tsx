@@ -19,24 +19,6 @@ const ProjectsList = () => {
 			'url': 'my-website',
 			'imageURL': thumbnailMyWebsite
 		},
-		{
-			'name': 'Expense Calendar',
-			'date': 'November 2024',
-			'url': 'expense-calendar',
-			'imageURL': thumbnailExpenseCalendar
-		},
-		{
-			'name': 'Expense Calendar',
-			'date': 'November 2024',
-			'url': 'expense-calendar',
-			'imageURL': thumbnailExpenseCalendar
-		},
-		{
-			'name': 'Expense Calendar',
-			'date': 'November 2024',
-			'url': 'expense-calendar',
-			'imageURL': thumbnailExpenseCalendar
-		},
 	];
 
 	return (
