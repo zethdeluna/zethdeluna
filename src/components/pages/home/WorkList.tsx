@@ -25,6 +25,7 @@ const WorkList = () => {
 
 					return (
 						<WorkCard
+							key={card.title}
 							title={card.title}
 							url={card.url}
 							svg={card.svg}

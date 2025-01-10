@@ -6,8 +6,31 @@ const PageTransition = () => {
 	const [isAnimating, setIsAnimating] = useState<boolean>(false);
 	const [render, setRender] = useState<boolean>(false);
 
+	// remove initial static transition once React hydrates
 	useEffect(() => {
-		// show transition for bnoth loading and submitting states
+			
+		// remove the initial transition div
+		const initialTransition = document.getElementById('initial-transition');
+		if ( initialTransition ) {
+			setTimeout(() => {
+
+				// fade out
+				initialTransition.classList.add('fade-out');
+
+				// remove element after transition completes
+				setTimeout(() => {
+					initialTransition.remove();
+				}, 250);
+
+			}, 100);
+		}
+
+	}, []);
+
+	// handle navigation transitions after initial load
+	useEffect(() => {
+
+		// show transition for both loading and submitting states
 		if ( navigation.state !== 'idle' ) {
 			setRender(true);
 			setIsAnimating(true);
@@ -24,14 +47,14 @@ const PageTransition = () => {
 				setRender(false);
 			}, 500);
 			return () => clearTimeout(timer);
-		}
+			}
+
 	}, [navigation.state]);
 
 	if ( !render ) return null;
 
 	return (
-		<div className={`page-transition ${isAnimating ? 'active' : ''}`} role="progressbar" aria-busy={isAnimating}>
-		</div>
+		<div className={`page-transition ${isAnimating ? 'active' : ''}`} role="progressbar" aria-busy={isAnimating}></div>
 	);
 }
 
