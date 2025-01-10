@@ -23,7 +23,52 @@
 			}
 		})();
 	</script>
-    <script type="module" crossorigin src="/assets/index-DRCbvCaA.js"></script>
+	<style>
+		#initial-transition {
+			align-items: center;
+			background: #FFFAF0;
+			display: flex;
+			height: 100dvh;
+			justify-content: center;
+			left: 0;
+			position: fixed;
+			top: 0;
+			transition: opacity 0.5s ease;
+			width: 100vw;
+			z-index: 9;
+		}
+
+		#initial-transition:before {
+			animation: loading 1s ease;
+			background: url(/assets/star-smiley-C2TzYShf.svg) no-repeat;
+			background-size: 100%;
+			content: '';
+			display: block;
+			height: 59px;
+			position: relative;
+			width: 62px;
+			z-index: 1;
+		}
+
+		#initial-transition {
+			opacity: 1;
+			transition: all 0.25s ease;
+		}
+
+		#initial-transition.fade-out {
+			opacity: 0;
+		}
+
+		@keyframes loading {
+			0% { transform: rotate(0deg); }
+			25% { transform: rotate(-30deg); }
+			50% { transform: rotate(30deg); }
+			75% { transform: rotate(-30deg); }
+			100% { transform: rotate(0deg); }
+		}
+	</style>
+	<div id="initial-transition" class="page-transition initial"></div>
+    <script type="module" crossorigin src="/assets/index-BEaYvtZS.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-D6_wdptN.css">
   </head>
   <body>
