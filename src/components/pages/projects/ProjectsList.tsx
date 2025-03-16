@@ -15,17 +15,17 @@ const ProjectsList = () => {
 			'imageURL': thumbnailMathComparatorGame
 		},
 		{
+			'name': 'zethdeluna.com',
+			'date': 'November 2024',
+			'url': 'my-website',
+			'imageURL': thumbnailMyWebsite
+		},
+		{
 			'name': 'Expense Calendar',
 			'date': 'November 2024',
 			'url': 'expense-calendar',
 			'imageURL': thumbnailExpenseCalendar
 		},
-		{
-			'name': 'zethdeluna.com',
-			'date': 'November 2024',
-			'url': 'my-website',
-			'imageURL': thumbnailMyWebsite
-		}
 	];
 
 	return (

@@ -1,13 +1,14 @@
 import WorkCard from "./WorkCard";
 import expenseCalendarThumbnail from '../../../assets/images/expense-calendar/thumbnail.png';
 import myWebsiteThumbnail from '../../../assets/images/my-website/thumbnail.jpg';
+import mathComparatorGameThumbnail from '../../../assets/images/math-comparator-game/thumbnail.jpg';
 
 const CARDS = [
 	{
-		'title': 'Expense Calendar',
-		'url': 'projects/expense-calendar',
+		'title': 'Math Comparator Game',
+		'url': 'projects/math-comparator-game',
 		'svg': '',
-		'image': expenseCalendarThumbnail
+		'image': mathComparatorGameThumbnail
 	},
 	{
 		'title': 'zethdeluna.com',
@@ -15,11 +16,17 @@ const CARDS = [
 		'svg': 'sun',
 		'image': myWebsiteThumbnail
 	},
+	{
+		'title': 'Expense Calendar',
+		'url': 'projects/expense-calendar',
+		'svg': 'star',
+		'image': expenseCalendarThumbnail
+	},
 ];
 
 const WorkList = () => {
 	return (
-		<ul className="grid" data-count="even">
+		<ul className="grid" data-count="odd">
 			{
 				CARDS.map(card => {
 
