@@ -23,6 +23,7 @@ const Intro = () => {
 								<ul>
 									<li>JavaScript (Vanilla, jQuery)</li>
 									<li>React (JS, TypeScript)</li>
+									<li>Redux</li>
 									<li>HTML</li>
 									<li>CSS</li>
 									<li>PHP</li>
