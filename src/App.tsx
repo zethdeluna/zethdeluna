@@ -10,6 +10,7 @@ import ExpenseCalendar from './projects/expense-calendar/ExpenseCalendar';
 import PageTransition from './components/PageTransition';
 import ExpenseCalendarDetail from './components/pages/project-detail/ExpenseCalendarDetail';
 import MyWebsiteDetail from './components/pages/project-detail/MyWebsiteDetail';
+import MathComparatorGameDetail from './components/pages/project-detail/MathComparatorGameDetail';
 
 const RootLayout = () => {
 	return (
@@ -72,6 +73,12 @@ const router = createBrowserRouter([
 						element: <MyWebsiteDetail />,
 						loader: createLoader(),
 						id: 'my-website'
+					},
+					{
+						path: 'math-comparator-game',
+						element: <MathComparatorGameDetail />,
+						loader: createLoader(),
+						id: 'math-comparator-game'
 					}
 				]
 			}

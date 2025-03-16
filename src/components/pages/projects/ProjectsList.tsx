@@ -3,10 +3,17 @@ import { LunaScroll } from "../../LunaScroll";
 import ProjectCard from "./ProjectCard";
 import thumbnailExpenseCalendar from '../../../assets/images/expense-calendar/thumbnail.png';
 import thumbnailMyWebsite from '../../../assets/images/my-website/thumbnail.jpg';
+import thumbnailMathComparatorGame from '../../../assets/images/math-comparator-game/thumbnail.jpg';
 
 const ProjectsList = () => {
 
 	const projects = [
+		{
+			'name': 'Math Comparator Game',
+			'date': 'March 2025',
+			'url': 'math-comparator-game',
+			'imageURL': thumbnailMathComparatorGame
+		},
 		{
 			'name': 'Expense Calendar',
 			'date': 'November 2024',
@@ -18,7 +25,7 @@ const ProjectsList = () => {
 			'date': 'November 2024',
 			'url': 'my-website',
 			'imageURL': thumbnailMyWebsite
-		},
+		}
 	];
 
 	return (

@@ -5,47 +5,30 @@ const Hero = () => {
 	const containerRef = useRef<HTMLElement | null>(null);
 
 	useEffect(() => {
-		const container = containerRef.current;
-		if ( !container ) return;
 
-		const observer = new MutationObserver(() => {
-			// load animation on moon-and-stars svg
-			const moon = container.querySelector('.moon-and-stars');
-			if ( !moon ) return;
+		const hero = containerRef.current;
+		if ( !hero ) return;
+		
+		const stars = hero.querySelectorAll('.star');
+		if ( !stars ) return;
 
-			observer.disconnect();
+		let delay = 500;
+		stars.forEach((star) => {
 
-			const stars = moon.querySelectorAll<SVGGElement>('.star');
-			if ( !stars ) return;
-
-			stars.forEach((star) => {
-				const currentTransform = star.getAttribute('transform') || '';
-				if ( !currentTransform.includes('scale(0)') ) {
-					const newTransform = currentTransform ? `${currentTransform} scale(0)` : 'scale(0)';
-					star.setAttribute('transform', newTransform);
-				}
-			});
-
-			let delay = 500;
-			stars.forEach((star) => {
-				setTimeout(() => {
-					const currentTransform = star.getAttribute('transform') || '';
+			setTimeout(() => {
+				
+				const currentTransform = star.getAttribute('transform');
+				if ( currentTransform ) {
 					const scaledTransform = currentTransform.replace('scale(0)', 'scale(1)');
 					star.setAttribute('transform', scaledTransform);
-				}, delay);
+				}
+				
 
-				delay += 250;
-			});
+			}, delay);
+
+			delay += 250;
+
 		});
-
-		observer.observe(container, {
-			childList: true,
-			subtree: true,
-		});
-
-		return () => {
-			observer.disconnect();
-		};
 
 	}, []);
 

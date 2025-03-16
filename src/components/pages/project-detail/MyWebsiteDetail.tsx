@@ -21,6 +21,10 @@ const MyWebsiteDetail = () => {
 			<Hero
 				title={<>zethdeluna<wbr/>.com</>}
 				date="November 2024"
+				link1={{
+					url: "https://github.com/zethdeluna/zethdeluna",
+					title: "Repo"
+				}}
 			/>
 
 			<FullWidthMedia
@@ -144,7 +148,7 @@ const MyWebsiteDetail = () => {
 			<section className="project-links">
 				<div className="container">
 
-					<a className="btn heading-2" href="https://github.com/zethdeluna/zethdeluna/tree/main/src/projects/expense-calendar" target="_blank">
+					<a className="btn heading-2" href="https://github.com/zethdeluna/zethdeluna" target="_blank">
 						<span>My Repository</span>
 						<SVG name="star" />
 					</a>
