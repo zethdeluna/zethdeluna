@@ -19,7 +19,7 @@ const Intro = () => {
 						</LunaScroll>
 					</h2>
 
-					<p>I'm Zeth, a frontend developer with years of experience crafting engaging sites through the magical languages of HTML, CSS, JavaScript, PHP, and a sprinkle of React JavaScript/TypeScript. I love taking beautiful, aesthetically pleasing designs and turning them into real usable experiences. Outside of work, I enjoy eating good food, drinking good coffee, strengthening my body, and hanging out with my peeps.</p>
+					<p>I'm Zeth, a frontend developer with years of experience crafting engaging sites through the magical languages of HTML, CSS, JavaScript, PHP, and React JavaScript/TypeScript. I love taking beautiful, aesthetically pleasing designs and turning them into real usable experiences. Outside of work, I enjoy eating good food, drinking good coffee, strengthening my body, and hanging out with my peeps.</p>
 
 				</article>
 
