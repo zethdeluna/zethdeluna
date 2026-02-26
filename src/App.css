@@ -2100,6 +2100,7 @@ footer .copyright {
 }
 
 .text-content pre .indent {
+	display: block;
 	margin-left: 32px;
 }
 

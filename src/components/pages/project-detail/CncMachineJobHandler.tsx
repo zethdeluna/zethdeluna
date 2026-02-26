@@ -68,7 +68,7 @@ const CncMachineJobHandler = () => {
 		<TextContent title="The Process">
 
 			<span className="eyebrow">Design</span>
-			<p>The aesthetic I went for was something clear, simple, and tech-y with dark charcoal backgrounds, amber accents, and a monospace font (JetBrains Mono). I wanted it to be clear and have everything visible at once, like something an operator would actually use. It was really fun to design something with such a clear real-world context in mind.</p>
+			<p>The aesthetic I went for was something clear, simple, and tech-y with dark charcoal backgrounds, amber accents, and a monospace font (JetBrains Mono). I wanted the user to be able to see everything at once, like something an operator would actually use. It was really fun to design something with such a clear real-world context in mind.</p>
 			<p>I leaned on CSS custom properties heavily for this one. Setting up a full token system upfront (colors, spacing, typography, status states) made the whole thing a lot more consistent and saved me a ton of time when I started wiring up the components.</p>
 
 			<span className="eyebrow">Development</span>
@@ -81,6 +81,7 @@ const CncMachineJobHandler = () => {
 				<pre>
 					<span>const {'{'} machines, refresh: freshMachines {'}'} = useMachines{'()'};</span>
 					<span>const {'{'} jobs, refresh: refreshJobs {'}'} = useJobs{'()'};</span>
+					<span></span>
 					<span>useWebSocket{'(('}message{')'} {'=>'}; {'{'}</span>
 					<span className="indent">if {'('}message.type !== 'connected'{') {'}</span>
 					<span className="indent">
