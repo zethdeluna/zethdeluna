@@ -4,7 +4,7 @@ import ProjectCard from "./ProjectCard";
 import thumbnailExpenseCalendar from '../../../assets/images/expense-calendar/thumbnail.png';
 import thumbnailMyWebsite from '../../../assets/images/my-website/thumbnail.jpg';
 import thumbnailMathComparatorGame from '../../../assets/images/math-comparator-game/thumbnail.jpg';
-import thumbnailCncMachineJobHandler from '../../../assets/images/cnc-machine-job-handler/desktop.png';
+import thumbnailCncMachineJobHandler from '../../../assets/images/cnc-machine-job-handler/thumbnail.png';
 
 const ProjectsList = () => {
 
