@@ -2093,6 +2093,11 @@ footer .copyright {
 	padding: 0 32px;
 }
 
+.text-content pre.inline {
+	display: inline-flex;
+	padding: 0;
+}
+
 .text-content pre .indent {
 	margin-left: 32px;
 }
