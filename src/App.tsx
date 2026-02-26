@@ -11,6 +11,7 @@ import PageTransition from './components/PageTransition';
 import ExpenseCalendarDetail from './components/pages/project-detail/ExpenseCalendarDetail';
 import MyWebsiteDetail from './components/pages/project-detail/MyWebsiteDetail';
 import MathComparatorGameDetail from './components/pages/project-detail/MathComparatorGameDetail';
+import CncMachineJobHandler from './components/pages/project-detail/CncMachineJobHandler';
 
 const RootLayout = () => {
 	return (
@@ -79,6 +80,12 @@ const router = createBrowserRouter([
 						element: <MathComparatorGameDetail />,
 						loader: createLoader(),
 						id: 'math-comparator-game'
+					},
+					{
+						path: 'cnc-machine-job-handler',
+						element: <CncMachineJobHandler />,
+						loader: createLoader(),
+						id: 'cnc-machine-job-handler'
 					}
 				]
 			}
