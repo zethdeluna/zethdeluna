@@ -2095,6 +2095,7 @@ footer .copyright {
 
 .text-content pre.inline {
 	display: inline-flex;
+	margin: 0;
 	padding: 0;
 }
 
