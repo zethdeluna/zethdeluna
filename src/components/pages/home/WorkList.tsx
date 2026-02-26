@@ -14,13 +14,13 @@ const CARDS = [
 	{
 		'title': 'Math Comparator Game',
 		'url': 'projects/math-comparator-game',
-		'svg': '',
+		'svg': 'sun',
 		'image': mathComparatorGameThumbnail
 	},
 	{
 		'title': 'zethdeluna.com',
 		'url': '/projects/my-website',
-		'svg': 'sun',
+		'svg': 'star',
 		'image': myWebsiteThumbnail
 	},
 	{
