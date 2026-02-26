@@ -79,16 +79,16 @@ const CncMachineJobHandler = () => {
 			<p>On the frontend, I was able to put a lot of React skills to use that I had been developing across previous projects. One pattern I'm happy with is how the three main hooks (`useMachines`, `useJobs`, and `useWebSocket`) wire together in the dashboard. Each hook does one thing, they're all independently testable, and the page component just calls `refresh()` on the data hooks whenever a WebSocket message comes in. Clean and easy to follow:</p>
 			<p>
 				<pre>
-					<span>const &lcub; machines, refresh: freshMachines &rbrace; = useMachines();</span>
-					<span>const &lbrace; jobs, refresh: refreshJobs &rbrace; = useJobs();</span>
-					<span>useWebSocket&lpar;(message) =&gt; &lbrace;</span>
-					<span className="indent">if &lpar;message.type !== 'connected'&rpar; &lbrace;</span>
+					<span>const {'{'} machines, refresh: freshMachines {'}'} = useMachines{'()'};</span>
+					<span>const {'{'} jobs, refresh: refreshJobs {'}'} = useJobs{'()'};</span>
+					<span>useWebSocket{'(('}message{')'} {'=>'}; {'{'}</span>
+					<span className="indent">if {'('}message.type !== 'connected'{') {'}</span>
 					<span className="indent">
-						<span className="indent">refreshMachines();</span>
-						<span className="indent">refreshJobs();</span>
+						<span className="indent">refreshMachines{'()'};</span>
+						<span className="indent">refreshJobs{'()'};</span>
 					</span>
-					<span className="indent">&rbrace;</span>
-					<span>&rbrace;&lpar; ;</span>
+					<span className="indent">{'}'}</span>
+					<span>{'})'}</span>
 				</pre>
 			</p>
 

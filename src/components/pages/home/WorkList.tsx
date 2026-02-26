@@ -2,8 +2,15 @@ import WorkCard from "./WorkCard";
 import expenseCalendarThumbnail from '../../../assets/images/expense-calendar/thumbnail.png';
 import myWebsiteThumbnail from '../../../assets/images/my-website/thumbnail.jpg';
 import mathComparatorGameThumbnail from '../../../assets/images/math-comparator-game/thumbnail.jpg';
+import cncMachineJobHandlerThumbnail from '../../../assets/images/cnc-machine-job-handler/thumbnail.png';
 
 const CARDS = [
+	{
+		'title': 'CNC Machine Job Handler',
+		'url': 'projects/cnc-machine-job-handler',
+		'svg': '',
+		'image': cncMachineJobHandlerThumbnail
+	},
 	{
 		'title': 'Math Comparator Game',
 		'url': 'projects/math-comparator-game',
