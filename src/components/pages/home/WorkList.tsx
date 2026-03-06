@@ -33,7 +33,7 @@ const CARDS = [
 
 const WorkList = () => {
 	return (
-		<ul className="grid" data-count="odd">
+		<ul className="grid" data-count="even">
 			{
 				CARDS.map(card => {
 

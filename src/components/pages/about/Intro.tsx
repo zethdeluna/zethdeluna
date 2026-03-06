@@ -35,7 +35,6 @@ const Intro = () => {
 								<span className="eyebrow">Design</span>
 								<ul>
 									<li>Figma</li>
-									<li>Sketch</li>
 								</ul>
 							</div>
 						</div>
