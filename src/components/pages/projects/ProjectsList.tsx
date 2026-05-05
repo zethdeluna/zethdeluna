@@ -5,10 +5,17 @@ import thumbnailExpenseCalendar from '../../../assets/images/expense-calendar/th
 import thumbnailMyWebsite from '../../../assets/images/my-website/thumbnail.jpg';
 import thumbnailMathComparatorGame from '../../../assets/images/math-comparator-game/thumbnail.jpg';
 import thumbnailCncMachineJobHandler from '../../../assets/images/cnc-machine-job-handler/thumbnail.png';
+import thumbnailTlescope from '../../../assets/images/tlescope/thumbnail.png';
 
 const ProjectsList = () => {
 
 	const projects = [
+		{
+			'name': 'TLEscope Satellite Tracker',
+			'date': 'April 2026',
+			'url': 'tlescope',
+			'imageURL': thumbnailTlescope
+		},
 		{
 			'name': 'CNC Machine Job Handler',
 			'date': 'February 2026',
