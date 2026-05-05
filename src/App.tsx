@@ -12,6 +12,7 @@ import ExpenseCalendarDetail from './components/pages/project-detail/ExpenseCale
 import MyWebsiteDetail from './components/pages/project-detail/MyWebsiteDetail';
 import MathComparatorGameDetail from './components/pages/project-detail/MathComparatorGameDetail';
 import CncMachineJobHandler from './components/pages/project-detail/CncMachineJobHandler';
+import TlescopeDetail from './components/pages/project-detail/TlescopeDetail';
 
 const RootLayout = () => {
 	return (
@@ -86,6 +87,12 @@ const router = createBrowserRouter([
 						element: <CncMachineJobHandler />,
 						loader: createLoader(),
 						id: 'cnc-machine-job-handler'
+					},
+					{
+						path: 'tlescope',
+						element: <TlescopeDetail />,
+						loader: createLoader(),
+						id: 'tlescope'
 					}
 				]
 			}
