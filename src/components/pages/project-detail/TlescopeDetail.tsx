@@ -9,7 +9,7 @@ const TlescopeDetail = () => {
 	return (
 		<>
 			<Link to="/projects" className="btn back">
-				<span className="accessbility">Back to all projects</span>
+				<span className="accessibility">Back to all projects</span>
 				<SVG name="arrow-right" />
 			</Link>
 
